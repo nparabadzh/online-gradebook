@@ -10,12 +10,15 @@ public class Subjects {
     Year intendedFor;
 
     public Subjects() {
+        this.teachers = new ArrayList<>();
+        this.topics = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    public Subjects(List<Employees> teachers, List<Topics> topics, List<Students> students, Year intendedFor) {
-        this.teachers = teachers;
-        this.topics = topics;
-        this.students = students;
+    public Subjects(Year intendedFor) {
+        this.teachers = new ArrayList<>();
+        this.topics = new ArrayList<>();
+        this.students = new ArrayList<>();
         this.intendedFor = intendedFor;
     }
 
