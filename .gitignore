@@ -1,11 +1,13 @@
 HELP.md
-node_modules/
+/frontend/node_modules/
 .DS_Store
 **/.DS_Store.gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+/backend/.DS_Store
+/backend/src/.DS_Store
 
 ### STS ###
 .apt_generated
