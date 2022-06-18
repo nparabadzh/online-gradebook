@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TopicsController {
-    @RequestMapping(path = "/topics")
-    private String showTopicsPage(Model model){
-        return "Topics";
+public class UserController {
+    @RequestMapping(path = "/users")
+    public String ShowUsersPage(Model model){
+        return "Users";
     }
 }

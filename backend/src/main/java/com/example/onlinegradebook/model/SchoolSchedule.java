@@ -12,10 +12,10 @@ public class SchoolSchedule {
     private Integer id;
 
     @Column(name = "week_day")
-    private WeekDays weekDay;
+    private WeekDay weekDay;
 
     @ManyToOne
-    private Subjects subject;
+    private Subject subject;
 
     @Column(name = "class_for")
     private Class classFor;
@@ -29,7 +29,7 @@ public class SchoolSchedule {
     public SchoolSchedule() {
     }
 
-    public SchoolSchedule(WeekDays weekDay, Subjects subject, Class classFor, Time startsAt, Time endsAt) {
+    public SchoolSchedule(WeekDay weekDay, Subject subject, Class classFor, Time startsAt, Time endsAt) {
         this.weekDay = weekDay;
         this.subject = subject;
         this.classFor = classFor;
@@ -37,19 +37,19 @@ public class SchoolSchedule {
         this.endsAt = endsAt;
     }
 
-    public WeekDays getWeekDay() {
+    public WeekDay getWeekDay() {
         return weekDay;
     }
 
-    public void setWeekDay(WeekDays weekDay) {
+    public void setWeekDay(WeekDay weekDay) {
         this.weekDay = weekDay;
     }
 
-    public Subjects getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(Subjects subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 

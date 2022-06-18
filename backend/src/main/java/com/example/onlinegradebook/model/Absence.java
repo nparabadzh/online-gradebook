@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="absences")
-public class Absences {
+public class Absence {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class Absences {
     @ManyToOne
     Student student;
 
-    public Absences() {
+    public Absence() {
     }
 
-    public Absences(Date day, SchoolSchedule schoolHour, Student student) {
+    public Absence(Date day, SchoolSchedule schoolHour, Student student) {
         this.day = day;
         this.schoolHour = schoolHour;
         this.student = student;

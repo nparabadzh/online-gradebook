@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class EmployeesController {
-    @RequestMapping(path = "/employees")
-    public String showEmployeesPage(Model model){
-        return "Employees";
+public class StudentController {
+    @RequestMapping("/students")
+    public String showStudentsPage(Model model){
+        return "Students";
     }
 }

@@ -1,5 +1,5 @@
 package com.example.onlinegradebook.model;
 
-public enum WeekDays {
+public enum WeekDay {
     MONDAY, Tuesday, Wednesday, Thursday, Friday
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name="subjects")
-public class Subjects {
+public class Subject {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,13 +24,13 @@ public class Subjects {
     @Column(name = "intended_for")
     private Year intendedFor;
 
-    public Subjects() {
+    public Subject() {
         this.teachers = new ArrayList<>();
         this.topics = new ArrayList<>();
         this.students = new ArrayList<>();
     }
 
-    public Subjects(Year intendedFor) {
+    public Subject(Year intendedFor) {
         this.teachers = new ArrayList<>();
         this.topics = new ArrayList<>();
         this.students = new ArrayList<>();

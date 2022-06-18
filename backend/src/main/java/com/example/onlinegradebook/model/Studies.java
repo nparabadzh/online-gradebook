@@ -12,7 +12,7 @@ public class Studies {
     private int id;
 
     @ManyToOne
-    private Subjects subject;
+    private Subject subject;
 
     @ManyToOne
     private Student student;
@@ -23,7 +23,7 @@ public class Studies {
     public Studies() {
     }
 
-    public Studies(Student student, Subjects subject, double grade) {
+    public Studies(Student student, Subject subject, double grade) {
         this.student = student;
         this.subject = subject;
         this.grade = grade;
@@ -37,11 +37,11 @@ public class Studies {
         this.student = student;
     }
 
-    public Subjects getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(Subjects subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 

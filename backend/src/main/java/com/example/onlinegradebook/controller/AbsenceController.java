@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AbsencesController {
+public class AbsenceController {
     @RequestMapping(path = "/absences")
     public String showAbsencesPage(Model model){
         return "Absences";

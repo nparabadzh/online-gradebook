@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ParentsController {
-    @RequestMapping(path = "/parents")
-    public String showParentsPage(Model model){
-        return "Parents";
+public class TopicController {
+    @RequestMapping(path = "/topics")
+    private String showTopicsPage(Model model){
+        return "Topics";
     }
 }

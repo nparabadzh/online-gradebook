@@ -21,6 +21,7 @@ public class Topic {
     private Date takingDate;
 
     public Topic() {
+
     }
 
     public Topic(String topic, boolean taken, Date takingDate) {
