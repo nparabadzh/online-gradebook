@@ -52,4 +52,8 @@ public class Studies {
     public void setGrade(double grade) {
         this.grade = grade;
     }
+
+    public int getID(){
+        return id;
+    }
 }

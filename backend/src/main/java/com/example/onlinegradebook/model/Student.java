@@ -40,4 +40,8 @@ public class Student extends User {
     public void setClasses(Class classes) {
         this.classes = classes;
     }
+
+    public int getID(){
+        return id;
+    }
 }

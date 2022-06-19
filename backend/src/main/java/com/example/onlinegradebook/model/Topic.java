@@ -53,4 +53,8 @@ public class Topic {
     public void setTakingDate(Date takingDate) {
         this.takingDate = takingDate;
     }
+
+    public int getID(){
+        return id;
+    }
 }

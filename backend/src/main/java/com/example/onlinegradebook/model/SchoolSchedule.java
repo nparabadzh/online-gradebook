@@ -76,4 +76,8 @@ public class SchoolSchedule {
     public void setEndsAt(Time endsAt) {
         this.endsAt = endsAt;
     }
+
+    public int getID(){
+        return id;
+    }
 }

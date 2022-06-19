@@ -1,15 +1,16 @@
 package com.example.onlinegradebook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="parents")
 public class Parent extends User{
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.TABLE)
+    private Integer id;
 
     @ManyToMany
     private List<Student> children;
@@ -29,5 +30,9 @@ public class Parent extends User{
 
     public void setChildren(List<Student> children) {
         this.children = children;
+    }
+
+    public int getID(){
+        return id;
     }
 }

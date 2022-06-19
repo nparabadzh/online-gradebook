@@ -68,4 +68,8 @@ public class Subject {
     public void setIntendedFor(Year intendedFor) {
         this.intendedFor = intendedFor;
     }
+
+    public int getID(){
+        return id;
+    }
 }

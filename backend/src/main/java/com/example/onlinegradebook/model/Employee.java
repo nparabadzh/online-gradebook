@@ -41,5 +41,9 @@ public class Employee extends User {
         this.salary = salary;
     }
 
+    public int getID(){
+        return id;
+    }
+
 
 }

@@ -25,11 +25,11 @@ public class School {
         this.address = address;
     }
 
-    public int getSchoolID() {
+    public int getID() {
         return schoolID;
     }
 
-    public void setSchoolID(int schoolID) {
+    public void setID(int schoolID) {
         this.schoolID = schoolID;
     }
 
@@ -48,4 +48,5 @@ public class School {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }

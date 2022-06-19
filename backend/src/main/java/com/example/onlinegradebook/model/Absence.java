@@ -14,6 +14,9 @@ public class Absence {
     @Column(name = "day")
     private Date day;
 
+    @Column(name = "absenceStatus")
+    private AbsenceStatus status;
+
     @ManyToOne
     SchoolSchedule schoolHour;
 
@@ -51,5 +54,17 @@ public class Absence {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public AbsenceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AbsenceStatus status) {
+        this.status = status;
     }
 }
