@@ -1,13 +1,53 @@
 package com.example.onlinegradebook.controller;
 
+import com.example.onlinegradebook.model.Subject;
+import com.example.onlinegradebook.services.SubjectServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class SubjectController {
-    @RequestMapping(path = "/subjects")
-    public String showSubjectsPage(Model model){
-        return "Subjects";
+    @Autowired
+    private SubjectServices subjectServices;
+
+    @GetMapping(path = "/subjects")
+    public String showSubjectsPage(Model model) {
+        List<Subject> subjects = subjectServices.findAll();
+        model.addAttribute("subjects", subjects);
+        return "subjects";
+    }
+
+    @GetMapping(path = "/subjects/add")
+    public String showAddSubjectPage(Model model) {
+        model.addAttribute("subject", new Subject());
+        return "subjects-add";
+    }
+
+    @PostMapping(path = "/subjects/add")
+    public String addSubject(@ModelAttribute Subject subject) {
+        subjectServices.addSubject(subject);
+        return "redirect:/subjects";
+    }
+
+    @GetMapping("/subjects/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        Subject subject = subjectServices.findSubjectById(id);
+        model.addAttribute("subject", subject);
+        return "subjects-edit";
+    }
+
+    @PostMapping("/subjects/edit/{id}")
+    public String updateSubject(@ModelAttribute Subject subject) throws Exception {
+        subjectServices.updateSubject(subject);
+        return "redirect:/subjects";
+    }
+
+    @GetMapping("/subjects/delete/{id}")
+    public String deleteSubject(@PathVariable("id") int id) {
+        subjectServices.deleteSubject(id);
+        return "redirect:/subjects";
     }
 }
