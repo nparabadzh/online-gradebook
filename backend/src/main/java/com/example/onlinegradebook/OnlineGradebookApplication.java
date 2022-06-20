@@ -1,4 +1,4 @@
-package com.example.onlinegradebook.app;
+package com.example.onlinegradebook;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
