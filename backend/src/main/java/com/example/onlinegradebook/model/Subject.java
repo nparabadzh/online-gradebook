@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.Year;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,22 +20,23 @@ public class Subject {
     @OneToMany
     private List<Topic> topics;
 
-    @ManyToMany
-    private List<Student> students;
-
     @Column(name = "intended_for")
     private Year intendedFor;
 
     public Subject() {
         this.teachers = new ArrayList<>();
         this.topics = new ArrayList<>();
-        this.students = new ArrayList<>();
     }
 
     public Subject(Year intendedFor) {
         this.teachers = new ArrayList<>();
         this.topics = new ArrayList<>();
-        this.students = new ArrayList<>();
+        this.intendedFor = intendedFor;
+    }
+
+    public Subject(List<Employee> teachers, List<Topic> topics, Year intendedFor) {
+        this.teachers = teachers;
+        this.topics = topics;
         this.intendedFor = intendedFor;
     }
 
@@ -51,14 +54,6 @@ public class Subject {
 
     public void setTopics(List<Topic> topics) {
         this.topics = topics;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
     }
 
     public Year getIntendedFor() {

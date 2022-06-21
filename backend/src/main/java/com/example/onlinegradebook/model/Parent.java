@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.RoleType;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public class Parent extends User{
 
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToMany
@@ -19,9 +21,9 @@ public class Parent extends User{
         this.children = new ArrayList<>();
     }
 
-    public Parent(String name, String EGN, String address, int role, List<Student> children) {
+    public Parent(String name, String EGN, String address, RoleType role, List<Student> children) {
         super(name, EGN, address, role);
-        this.children = new ArrayList<>();
+        this.children = children;
     }
 
     public List<Student> getChildren() {

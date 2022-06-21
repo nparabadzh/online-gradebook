@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.RoleType;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,19 +9,19 @@ import javax.persistence.*;
 public class Employee extends User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "qualification")
     String qualification;
 
     @Column(name = "salary")
-    String salary;
+    double salary;
 
     public Employee() {
     }
 
-    public Employee(String name, String EGN, String address, int role, String qualification, String salary) {
+    public Employee(String name, String EGN, String address, RoleType role, String qualification, double salary) {
         super(name, EGN, address, role);
         this.qualification = qualification;
         this.salary = salary;
@@ -33,11 +35,11 @@ public class Employee extends User {
         this.qualification = qualification;
     }
 
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

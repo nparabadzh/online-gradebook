@@ -1,4 +1,4 @@
-package com.example.onlinegradebook.model;
+package com.example.onlinegradebook.constant;
 
 public enum AbsenceStatus {
     Excused, UnExcused

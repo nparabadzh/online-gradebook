@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.RoleType;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,12 +23,12 @@ public class User {
     private String address;
 
     @Column(name = "role")
-    private int role;
+    private RoleType role;
 
     public User() {
     }
 
-    public User(String name, String EGN, String address, int role) {
+    public User(String name, String EGN, String address, RoleType role) {
         this.name = name;
         this.EGN = EGN;
         this.address = address;
@@ -57,11 +59,11 @@ public class User {
         this.address = address;
     }
 
-    public int getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 

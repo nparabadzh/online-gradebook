@@ -33,7 +33,6 @@ public class SchoolScheduleServices {
     public void updateSchoolSchedule(@ModelAttribute SchoolSchedule schoolSchedule) throws Exception {
         SchoolSchedule schoolScheduleInDB = schoolScheduleRepository.findById(schoolSchedule.getID()).orElse(null);
         if (schoolScheduleInDB != null) {
-            schoolScheduleInDB.setClassFor(schoolSchedule.getClassFor());
             schoolScheduleInDB.setSubject(schoolSchedule.getSubject());
             schoolScheduleInDB.setWeekDay(schoolSchedule.getWeekDay());
             schoolScheduleInDB.setStartsAt(schoolSchedule.getStartsAt());

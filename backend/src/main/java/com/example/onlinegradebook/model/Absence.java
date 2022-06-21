@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.AbsenceStatus;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -26,10 +28,11 @@ public class Absence {
     public Absence() {
     }
 
-    public Absence(Date day, SchoolSchedule schoolHour, Student student) {
+    public Absence(Date day, SchoolSchedule schoolHour, Student student, AbsenceStatus absenceStatus) {
         this.day = day;
         this.schoolHour = schoolHour;
         this.student = student;
+        this.status = absenceStatus;
     }
 
     public Date getDay() {

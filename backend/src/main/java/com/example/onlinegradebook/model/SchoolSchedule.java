@@ -1,5 +1,8 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.Class;
+import com.example.onlinegradebook.constant.WeekDay;
+
 import javax.persistence.*;
 import java.sql.Time;
 
@@ -17,9 +20,6 @@ public class SchoolSchedule {
     @ManyToOne
     private Subject subject;
 
-    @Column(name = "class_for")
-    private Class classFor;
-
     @Column(name = "starts_at")
     private Time startsAt;
 
@@ -29,10 +29,9 @@ public class SchoolSchedule {
     public SchoolSchedule() {
     }
 
-    public SchoolSchedule(WeekDay weekDay, Subject subject, Class classFor, Time startsAt, Time endsAt) {
+    public SchoolSchedule(WeekDay weekDay, Subject subject, Time startsAt, Time endsAt) {
         this.weekDay = weekDay;
         this.subject = subject;
-        this.classFor = classFor;
         this.startsAt = startsAt;
         this.endsAt = endsAt;
     }
@@ -51,14 +50,6 @@ public class SchoolSchedule {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public Class getClassFor() {
-        return classFor;
-    }
-
-    public void setClassFor(Class classFor) {
-        this.classFor = classFor;
     }
 
     public Time getStartsAt() {

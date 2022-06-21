@@ -1,5 +1,9 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.Class;
+import com.example.onlinegradebook.constant.RoleType;
+import com.example.onlinegradebook.constant.Year;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +11,7 @@ import javax.persistence.*;
 public class Student extends User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -19,7 +23,7 @@ public class Student extends User {
     public Student() {
     }
 
-    public Student(String name, String EGN, String address, int role, Year year, Class classes) {
+    public Student(String name, String EGN, String address, RoleType role, Year year, Class classes) {
         super(name, EGN, address, role);
         this.year = year;
         this.classes = classes;

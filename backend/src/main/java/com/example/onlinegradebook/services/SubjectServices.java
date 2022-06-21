@@ -35,7 +35,6 @@ public class SubjectServices {
         if (subjectInDB != null) {
             subjectInDB.setTopics(subject.getTopics());
             subjectInDB.setIntendedFor(subject.getIntendedFor());
-            subjectInDB.setStudents(subject.getStudents());
             subjectInDB.setTeachers(subject.getTeachers());
             subjectRepository.save(subjectInDB);
         } else {

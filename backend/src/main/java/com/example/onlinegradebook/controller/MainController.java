@@ -1,5 +1,6 @@
 package com.example.onlinegradebook.controller;
 
+import com.example.onlinegradebook.constant.RoleType;
 import com.example.onlinegradebook.model.User;
 import com.example.onlinegradebook.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class MainController {
 
     @PostMapping(path="/create") // Map ONLY POST Requests
     public @ResponseBody String addNewUser(@RequestParam String name
-            , @RequestParam String egn, @RequestParam String address, @RequestParam int role) {
+            , @RequestParam String egn, @RequestParam String address, @RequestParam RoleType role) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
