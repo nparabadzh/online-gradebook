@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SchoolScheduleServices {
+public class SchoolScheduleService {
     @Autowired
     private SchoolScheduleRepository schoolScheduleRepository;
 

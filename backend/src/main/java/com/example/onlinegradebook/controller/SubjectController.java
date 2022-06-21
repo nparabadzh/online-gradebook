@@ -1,7 +1,7 @@
 package com.example.onlinegradebook.controller;
 
 import com.example.onlinegradebook.model.Subject;
-import com.example.onlinegradebook.services.SubjectServices;
+import com.example.onlinegradebook.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class SubjectController {
     @Autowired
-    private SubjectServices subjectServices;
+    private SubjectService subjectServices;
 
     @GetMapping(path = "/subjects")
     public String showSubjectsPage(Model model) {

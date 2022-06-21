@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ParentServices {
+public class ParentService {
     @Autowired
     private ParentRepository parentRepository;
 

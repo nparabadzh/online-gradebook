@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AbsenceServices {
+public class AbsenceService {
     @Autowired
     private AbsenceRepository absenceRepository;
 

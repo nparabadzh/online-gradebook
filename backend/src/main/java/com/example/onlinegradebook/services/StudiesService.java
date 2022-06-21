@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class StudiesServices {
+public class StudiesService {
     @Autowired
     private StudiesRepository studiesRepository;
 

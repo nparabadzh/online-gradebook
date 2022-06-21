@@ -1,7 +1,7 @@
 package com.example.onlinegradebook.controller;
 
 import com.example.onlinegradebook.model.User;
-import com.example.onlinegradebook.services.UserServices;
+import com.example.onlinegradebook.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    private UserServices userServices;
+    private UserService userServices;
 
     @GetMapping(path = "/users")
     public String showUsersPage(Model model) {

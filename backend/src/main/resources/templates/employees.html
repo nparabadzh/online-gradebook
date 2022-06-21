@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Online GradeBook app</title>
+</head>
+
+<body>
+<h1>Employees</h1>
+<br />
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>EGN</th>
+        <th>Qualifications</th>
+        <th>Role</th>
+        <th>Salary</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${employees.empty}">
+        <td colspan="2">No employees available</td>
+    </tr>
+    <tr th:each="employee : ${employees}">
+        <td><span th:text="${employee.getID()}"> </span></td>
+        <td><span th:text="${employee.getName()}"> </span></td>
+        <td><span th:text="${employee.getAddress()}"> </span></td>
+        <td><span th:text="${employee.getEGN()}"> </span></td>
+        <td><span th:text="${employee.getQualification()}"> </span></td>
+        <td><span th:text="${employee.getRole()}"> </span></td>
+        <td><span th:text="${employee.getSalary()}"> </span></td>
+        <td><a th:href="@{/employees/edit/{id}(id=${employee.getID()})}">Edit</a></td>
+        <td><a th:href="@{/employees/delete/{id}(id=${employee.getID()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

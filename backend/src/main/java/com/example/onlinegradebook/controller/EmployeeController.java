@@ -1,7 +1,7 @@
 package com.example.onlinegradebook.controller;
 
 import com.example.onlinegradebook.model.Employee;
-import com.example.onlinegradebook.services.EmployeeServices;
+import com.example.onlinegradebook.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 public class EmployeeController {
     @Autowired
-    private EmployeeServices employeeServices;
+    private EmployeeService employeeServices;
 
     @GetMapping(path = "/employees")
     public String showEmployeesPage(Model model) {

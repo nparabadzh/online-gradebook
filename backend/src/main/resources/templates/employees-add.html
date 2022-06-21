@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Online GradeBook app</title>
+</head>
+
+<body>
+<h3>Add a new employee</h3>
+
+
+<form action="#" th:action="@{/employees/add}" th:object="${employee}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Address: <input type="text" th:field="*{address}" /></p>
+    <p>EGN: <input type="text" th:field="*{EGN}" /></p>
+    <p>Qualifications: <input type="text" th:field="*{qualification}" /></p>
+    <p>Role: <select name="roleType">
+        <option th:each="role:${T(com.example.onlinegradebook.constant.RoleType).values()}"
+                th:value="${role}"
+                th:text="${role}"></option>
+    </select></p>
+    <p>Salary: <input type="text" th:field="*{salary}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
