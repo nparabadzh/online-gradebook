@@ -66,7 +66,7 @@ public class DataInitializerService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Creating Schools
-//        schoolRepository.save(new School(0, "Peko Slaveikov", "Mladost str., Varna"));
+//        schoolRepository.save(new School(0, "Petko Slaveikov", "Mladost str., Varna"));
 //        schoolRepository.save(new  School(0, "Peio Yavorov", "Svoboda str., Sofia"));
 
         //Creating Employees

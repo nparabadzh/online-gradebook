@@ -3,12 +3,13 @@ package com.example.onlinegradebook.controller;
 import com.example.onlinegradebook.model.Subject;
 import com.example.onlinegradebook.services.SubjectServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class SubjectController {
     @Autowired
     private SubjectServices subjectServices;

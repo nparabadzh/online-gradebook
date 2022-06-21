@@ -26,7 +26,8 @@ public class SchoolServices {
     }
 
     public School findSchoolById(@PathVariable("id") int id) {
-        School school = schoolRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid school Id:" + id));
+        School school = schoolRepository.findById(id).
+                orElseThrow(() -> new IllegalArgumentException("Invalid school Id:" + id));
         return school;
     }
 
