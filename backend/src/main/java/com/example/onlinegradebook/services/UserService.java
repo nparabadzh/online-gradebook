@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public void updateUser(@ModelAttribute User user) throws Exception {
-        User userInDB = userRepository.findById(user.getID()).orElse(null);
+        User userInDB = userRepository.findById(user.getId()).orElse(null);
         if (userInDB != null) {
             userInDB.setName(user.getName());
             userInDB.setEGN(user.getEGN());

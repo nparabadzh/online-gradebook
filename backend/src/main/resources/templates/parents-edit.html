@@ -10,7 +10,7 @@
 <body>
 <h3>Edit the parent</h3>
 
-<form action="#" th:action="@{/parents/edit/{id}(id=${parent.getID()})}" th:object="${parent}" th:method="post">
+<form action="#" th:action="@{/parents/edit/{id}(id=${parent.getId()})}" th:object="${parent}" th:method="post">
     <p>Name: <input type="text" th:field="*{user.name}" /></p>
     <p>Address: <input type="text" th:field="*{user.address}" /></p>
     <p>EGN: <input type="text" th:field="*{user.EGN}" /></p>

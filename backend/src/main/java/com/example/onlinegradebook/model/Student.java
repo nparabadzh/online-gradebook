@@ -5,14 +5,16 @@ import com.example.onlinegradebook.constant.RoleType;
 import com.example.onlinegradebook.constant.Year;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="students")
 public class Student {
 
     @Id
+    @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
     @OneToOne
     @JoinColumn(name = "class_id", nullable = false)
@@ -22,20 +24,12 @@ public class Student {
     @JoinColumn(name = "user_id", nullable = true)
     User user;
 
-    @ManyToOne
-    Grades grades;
-
     public Student() {
     }
 
-    public Student(User user, SchoolClass schoolClassIn, Grades grades) {
+    public Student(User user, SchoolClass schoolClassIn) {
         this.user = user;
         this.schoolClass = schoolClassIn;
-        this.grades = grades;
-    }
-
-    public int getID(){
-        return id;
     }
 
     public SchoolClass getSchoolClass() {
@@ -52,5 +46,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

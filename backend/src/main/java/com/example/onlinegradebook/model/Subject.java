@@ -12,16 +12,20 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
     @OneToOne
-    private Employee teacher;
+    Employee teacher;
 
-    @ManyToOne
-    private Topic topic;
+    @OneToMany
+    List<Topic> topics;
 
     @Column(name = "intended_for")
-    private Year intendedFor;
+    Year intendedFor;
+
+    @OneToMany
+    @JoinColumn(name = "student_id", nullable = true)
+    List<Grades> grades;
 
     public Subject() {
 
@@ -31,26 +35,18 @@ public class Subject {
         this.intendedFor = intendedFor;
     }
 
-    public Subject(Employee teacher, Topic topic, Year intendedFor) {
+    public Subject(Employee teacher, List<Topic> topics, Year intendedFor) {
         this.teacher = teacher;
-        this.topic = topic;
+        this.topics = topics;
         this.intendedFor = intendedFor;
     }
 
-    public Employee getTeachers() {
-        return teacher;
+       public List<Topic> getTopics() {
+        return topics;
     }
 
-    public void setTeachers(Employee teachers) {
-        this.teacher = teacher;
-    }
-
-    public Topic getTopics() {
-        return topic;
-    }
-
-    public void setTopics(Topic topics) {
-        this.topic = topic;
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 
     public Year getIntendedFor() {
@@ -61,10 +57,6 @@ public class Subject {
         this.intendedFor = intendedFor;
     }
 
-    public int getID(){
-        return id;
-    }
-
     public Employee getTeacher() {
         return teacher;
     }
@@ -73,11 +65,19 @@ public class Subject {
         this.teacher = teacher;
     }
 
-    public Topic getTopic() {
-        return topic;
+    public int getId() {
+        return id;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Grades> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grades> grades) {
+        this.grades = grades;
     }
 }

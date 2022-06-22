@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Employee{
 
     @Id
+    @Column(name = "employee_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
@@ -52,8 +53,12 @@ public class Employee{
         this.salary = salary;
     }
 
-    public int getID(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public School getSchool() {

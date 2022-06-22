@@ -8,17 +8,18 @@ import java.util.Date;
 public class Topic {
 
     @Id
+    @Column(name = "topic_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
     @Column(name = "topic")
     private String topic;
 
     @Column(name = "is_taken")
-    private boolean taken;
+    boolean taken;
 
     @Column(name = "taking_date")
-    private Date takingDate;
+    Date takingDate;
 
     public Topic() {
 
@@ -54,7 +55,11 @@ public class Topic {
         this.takingDate = takingDate;
     }
 
-    public int getID(){
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

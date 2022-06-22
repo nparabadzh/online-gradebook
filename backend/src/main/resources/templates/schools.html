@@ -36,8 +36,8 @@
 <!--            <td><span th:text="${employee.getRole()}"> </span></td>-->
 <!--            <td><span th:text="${employee.getSalary()}"> </span></td>-->
 <!--        </tr>-->
-        <td><a th:href="@{/schools/edit/{id}(id=${school.getID()})}">Edit</a></td>
-        <td><a th:href="@{/schools/delete/{id}(id=${school.getID()})}">Delete</a></td>
+        <td><a th:href="@{/schools/edit/{id}(id=${school.getId()})}">Edit</a></td>
+        <td><a th:href="@{/schools/delete/{id}(id=${school.getId()})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

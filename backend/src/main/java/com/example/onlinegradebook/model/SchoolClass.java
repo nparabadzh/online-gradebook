@@ -12,14 +12,15 @@ import java.util.List;
 public class SchoolClass {
 
     @Id
+    @Column(name = "class_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
     @Column(nullable = false)
-    private Year year;
+    Year year;
 
     @Column(name = "class")
-    private ClassInitialization classes;
+    ClassInitialization classInitialization;
 
     @ManyToOne
     @JoinColumn(name = "school_id", nullable = false)
@@ -28,15 +29,21 @@ public class SchoolClass {
     @OneToMany
     List<Student> students;
 
+    @OneToMany
+    List<Subject> subjects;
+
     public SchoolClass() {
         this.students = new ArrayList<>();
+        this.subjects = new ArrayList<>();
+
     }
 
-    public SchoolClass(Year year, ClassInitialization classes, School school, List<Student> students, List<Subject> subjects) {
+    public SchoolClass(Year year, ClassInitialization classInitialization, School school, List<Student> students, List<Subject> subjects) {
         this.year = year;
-        this.classes = classes;
+        this.classInitialization = classInitialization;
         this.school = school;
         this.students = students;
+        this.subjects = subjects;
     }
 
     public School getSchool() {
@@ -53,5 +60,37 @@ public class SchoolClass {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Year getYear() {
+        return year;
+    }
+
+    public void setYear(Year year) {
+        this.year = year;
+    }
+
+    public ClassInitialization getClassInitialization() {
+        return classInitialization;
+    }
+
+    public void setClassInitialization(ClassInitialization classInitialization) {
+        this.classInitialization = classInitialization;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

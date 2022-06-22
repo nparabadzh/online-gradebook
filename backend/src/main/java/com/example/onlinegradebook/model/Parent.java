@@ -12,34 +12,40 @@ import java.util.List;
 public class Parent{
 
     @Id
+    @Column(name = "parent_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
-    @ManyToOne()@JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    @OneToMany
+    List<Student> students;
 
-    @OneToOne @JoinColumn(name = "user_id", nullable = true)
-    private User user;
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    User user;
 
     public Parent() {
-
+        this.students = new ArrayList<>();
     }
 
-    public Parent(User user, Student student) {
-        this.student = student;
+    public Parent(User user, List<Student> students) {
+        this.students = students;
         this.user = user;
     }
 
-    public Student getChildren() {
-        return student;
-    }
-
-    public void setChildren(Student student) {
-        this.student = student;
-    }
-
-    public int getID(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     public User getUser() {

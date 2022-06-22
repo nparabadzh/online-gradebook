@@ -10,19 +10,22 @@ import java.util.Date;
 public class Absence {
 
     @Id
+    @Column(name = "absence_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(name = "day")
-    private Date day;
+    Date day;
 
     @Column(name = "absenceStatus")
-    private AbsenceStatus status;
+    AbsenceStatus status;
 
     @ManyToOne
+    @JoinColumn(name = "school_schedule_id", nullable = true)
     SchoolSchedule schoolHour;
 
     @ManyToOne
+    @JoinColumn(name = "student_id", nullable = true)
     Student student;
 
     public Absence() {
@@ -59,15 +62,19 @@ public class Absence {
         this.student = student;
     }
 
-    public int getID(){
-        return id;
-    }
-
     public AbsenceStatus getStatus() {
         return status;
     }
 
     public void setStatus(AbsenceStatus status) {
         this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

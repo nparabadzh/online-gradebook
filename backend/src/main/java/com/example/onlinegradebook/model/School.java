@@ -9,17 +9,18 @@ import java.util.List;
 public class School {
 
     @Id
+    @Column(name = "school_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    int id;
 
     @Column(name = "name")
-    private String name;
+    String name;
 
     @Column(name = "address")
-    private String address;
+    String address;
 
     @OneToMany (mappedBy =  "school", cascade = CascadeType.ALL)
-    private  List<SchoolClass> classes;
+    List<SchoolClass> classes;
 
     public School() {
         classes = new ArrayList<>();
@@ -31,12 +32,20 @@ public class School {
         this.classes = classes;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public List<SchoolClass> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<SchoolClass> classes) {
+        this.classes = classes;
     }
 
     public String getName() {
@@ -55,9 +64,6 @@ public class School {
         this.address = address;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public List<SchoolClass> getEmployees() {
         return classes;

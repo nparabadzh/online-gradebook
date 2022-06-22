@@ -34,7 +34,7 @@ public class SchoolService {
     }
 
     public void updateSchool(@ModelAttribute School school) throws Exception {
-        School schoolInDB = schoolRepository.findById(school.getID()).orElse(null);
+        School schoolInDB = schoolRepository.findById(school.getId()).orElse(null);
         if (schoolInDB != null) {
             schoolInDB.setName(school.getName());
             schoolInDB.setAddress(school.getAddress());

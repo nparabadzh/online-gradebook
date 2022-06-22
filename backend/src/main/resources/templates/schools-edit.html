@@ -10,7 +10,7 @@
 <body>
 <h3>Edit the school</h3>
 
-<form action="#" th:action="@{/schools/edit/{id}(id=${school.ID})}" th:object="${school}" th:method="post">
+<form action="#" th:action="@{/schools/edit/{id}(id=${school.id})}" th:object="${school}" th:method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Address: <input type="text" th:field="*{address}" /></p>
     <p><input type="submit" value="Submit" /></p>

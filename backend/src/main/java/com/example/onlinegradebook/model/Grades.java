@@ -7,25 +7,32 @@ import java.util.Date;
 @Table(name="grades")
 public class Grades {
     @Id
+    @Column(name = "grades_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne
-    private Subject subject;
+    int id;
 
     @Column(name = "grade")
-    private double grade;
+    double grade;
 
     @Column(name = "date")
-    private Date date;
+    Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = true)
+    Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_id", nullable = true)
+    Subject subject;
 
     public Grades() {
     }
 
-    public Grades(Subject subject, double grade, Date date) {
-        this.subject = subject;
+    public Grades(double grade, Date date, Student student, Subject subject) {
         this.grade = grade;
         this.date = date;
+        this.student = student;
+        this.subject = subject;
     }
 
     public int getId() {
@@ -34,14 +41,6 @@ public class Grades {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 
     public double getGrade() {
@@ -58,5 +57,21 @@ public class Grades {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }
