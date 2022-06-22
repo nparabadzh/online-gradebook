@@ -33,10 +33,7 @@ public class ParentService {
     public void updateParent(@ModelAttribute Parent parent) throws Exception {
         Parent parentInDB = parentRepository.findById(parent.getID()).orElse(null);
         if (parentInDB != null) {
-            parentInDB.setName(parent.getName());
-            parentInDB.setEGN(parent.getEGN());
-            parentInDB.setAddress(parent.getAddress());
-            parentInDB.setRole(parent.getRole());
+            parentInDB.setUser(parent.getUser());
             parentInDB.setChildren(parent.getChildren());
             parentRepository.save(parentInDB);
         } else {

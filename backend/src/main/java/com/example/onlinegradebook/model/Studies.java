@@ -15,26 +15,22 @@ public class Studies {
     private Subject subject;
 
     @ManyToOne
-    private Student student;
-
-    @Column(name = "grade")
-    private double grade;
+    private SchoolClass schoolClass;
 
     public Studies() {
     }
 
-    public Studies(Student student, Subject subject, double grade) {
-        this.student = student;
+    public Studies(SchoolClass schoolClass, Subject subject) {
+        this.schoolClass = schoolClass;
         this.subject = subject;
-        this.grade = grade;
     }
 
-    public Student getStudent() {
-        return student;
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
     }
 
     public Subject getSubject() {
@@ -43,14 +39,6 @@ public class Studies {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(double grade) {
-        this.grade = grade;
     }
 
     public int getID(){

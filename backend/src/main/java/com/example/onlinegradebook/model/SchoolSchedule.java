@@ -1,6 +1,5 @@
 package com.example.onlinegradebook.model;
 
-import com.example.onlinegradebook.constant.Class;
 import com.example.onlinegradebook.constant.WeekDay;
 
 import javax.persistence.*;

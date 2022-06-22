@@ -14,46 +14,43 @@ public class Subject {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany
-    private List<Employee> teachers;
+    @OneToOne
+    private Employee teacher;
 
-    @OneToMany
-    private List<Topic> topics;
+    @ManyToOne
+    private Topic topic;
 
     @Column(name = "intended_for")
     private Year intendedFor;
 
     public Subject() {
-        this.teachers = new ArrayList<>();
-        this.topics = new ArrayList<>();
+
     }
 
     public Subject(Year intendedFor) {
-        this.teachers = new ArrayList<>();
-        this.topics = new ArrayList<>();
         this.intendedFor = intendedFor;
     }
 
-    public Subject(List<Employee> teachers, List<Topic> topics, Year intendedFor) {
-        this.teachers = teachers;
-        this.topics = topics;
+    public Subject(Employee teacher, Topic topic, Year intendedFor) {
+        this.teacher = teacher;
+        this.topic = topic;
         this.intendedFor = intendedFor;
     }
 
-    public List<Employee> getTeachers() {
-        return teachers;
+    public Employee getTeachers() {
+        return teacher;
     }
 
-    public void setTeachers(List<Employee> teachers) {
-        this.teachers = teachers;
+    public void setTeachers(Employee teachers) {
+        this.teacher = teacher;
     }
 
-    public List<Topic> getTopics() {
-        return topics;
+    public Topic getTopics() {
+        return topic;
     }
 
-    public void setTopics(List<Topic> topics) {
-        this.topics = topics;
+    public void setTopics(Topic topics) {
+        this.topic = topic;
     }
 
     public Year getIntendedFor() {
@@ -66,5 +63,21 @@ public class Subject {
 
     public int getID(){
         return id;
+    }
+
+    public Employee getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Employee teacher) {
+        this.teacher = teacher;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
