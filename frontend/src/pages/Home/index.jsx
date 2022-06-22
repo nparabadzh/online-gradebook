@@ -1,30 +1,36 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
-import SignIn from "../Authentication/SignIn";
-import SignUp from "../Authentication/SignUp";
+import React from "react";
+import { Grid, Card, CardContent, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [hasAccount, setHasAccount] = useState(true);
-
-  const navigateForm = () => {
-    setHasAccount((previous) => {
-      setHasAccount(!previous);
-    });
-  };
   const user = useSelector((state) => state.user.currentUser);
 
+  const renderHello = () => {
+    return (
+      <CardContent>
+        <Typography variant="h4">Hello {user.name}!</Typography>
+      </CardContent>
+    );
+  };
+
+  const renderProceedToLogin = () => {
+    return (
+      <CardContent>
+        <Typography variant="h4">
+          Hello! In order to use the Online Gradebook you must either{" "}
+          <Link to="/signin">sign in</Link> or <Link to="/signup">sign up</Link>
+        </Typography>
+      </CardContent>
+    );
+  };
+
   return (
-    <Box>
-      <div>Login</div>
-      {hasAccount ? <SignIn></SignIn> : <SignUp></SignUp>}
-      <Button variant="outlined" onClick={navigateForm}>
-        {hasAccount
-          ? "Don't have an account? Sign up!"
-          : "Already have an account? Sign in!"}
-      </Button>
-    </Box>
+    <Grid container item xs={12}>
+      <Card style={{ width: "100%" }}>
+        {user ? renderHello() : renderProceedToLogin()}
+      </Card>
+    </Grid>
   );
 };
 

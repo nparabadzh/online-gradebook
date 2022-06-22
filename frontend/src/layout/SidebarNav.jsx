@@ -83,10 +83,10 @@ const CustomRouterLink = forwardRef((props, ref) => (
 ));
 
 const SidebarNav = (props) => {
-  const { pages, className, ...rest } = props;
+  const { pages, className, currentUserRole, ...rest } = props;
   const classes = useStyles();
   const location = useLocation();
-  const currentBaseUrl = location.pathname.split("/")[1];
+  // const currentBaseUrl = location.pathname.split("/")[1];
 
   const handleClick = (id) => {
     setExpanded({
@@ -119,8 +119,8 @@ const SidebarNav = (props) => {
         id={page.title}
       >
         <Button
-          activeClassName={classes.active}
-          isActive={() => isActive(page.href, page.activeUrlList)}
+          // activeClassName={classes.active}
+          // isActive={() => isActive(page.href, page.activeUrlList)}
           className={classes.button}
           component={CustomRouterLink}
           to={page.href ? page.href : ""}
@@ -134,7 +134,17 @@ const SidebarNav = (props) => {
 
   return (
     <List {...rest} className={className}>
-      {pages.map((page) => renderPage(page))}
+      {pages.map((page) => {
+        if (page.requiredRole) {
+          if (page.requiredRole.includes(currentUserRole)) {
+            return renderPage(page);
+          } else {
+            return null;
+          }
+        } else {
+          return renderPage(page);
+        }
+      })}
     </List>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import { Divider, Drawer } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
@@ -38,6 +39,7 @@ const useStyles = makeStyles(() => ({
 
 const Sidebar = (props) => {
   const { open, variant, onClose, className, ...rest } = props;
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   const classes = useStyles();
 
@@ -51,26 +53,31 @@ const Sidebar = (props) => {
       title: "Classes",
       href: "/classes",
       icon: <ClassIcon />,
+      requiredRole: ["admin"],
     },
     {
       title: "Users",
       href: "/users",
       icon: <PeopleIcon />,
+      requiredRole: ["admin"],
     },
     {
       title: "Profile",
       href: "/profile",
       icon: <AccountBoxIcon />,
+      requiredRole: ["admin", "user"],
     },
     {
       title: "Schools",
       href: "/schools",
       icon: <SchoolIcon />,
+      requiredRole: ["admin"],
     },
     {
       title: "Subjects",
       href: "/subjects",
       icon: <SubjectIcon />,
+      requiredRole: ["admin"],
     },
   ];
 
@@ -87,7 +94,11 @@ const Sidebar = (props) => {
           <Logo />
         </div>
         <Divider className={classes.divider} />
-        <SidebarNav className={classes.nav} pages={pages} />
+        <SidebarNav
+          className={classes.nav}
+          pages={pages}
+          currentUserRole={currentUser && currentUser.role}
+        />
       </div>
     </Drawer>
   );

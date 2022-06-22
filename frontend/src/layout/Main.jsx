@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
-
+import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
 import NavigationBar from "./NavigationBar";
 import Sidebar from "./Sidebar";
 
@@ -53,7 +54,11 @@ const Main = (props) => {
           open={shouldOpenSidebar}
           variant={isDesktop ? "persistent" : "temporary"}
         />
-        <main className={classes.content}>{children}</main>
+        <main className={classes.content}>
+          <Box>
+            <Paper>{children}</Paper>
+          </Box>
+        </main>
       </div>
     </>
   );

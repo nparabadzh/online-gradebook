@@ -71,6 +71,10 @@ export default function PrimarySearchAppBar() {
     navigate("/");
   };
 
+  const signIn = () => {
+    navigate("/signin");
+  };
+
   const menuId = "primary-search-account-menu";
 
   const renderSignOutMenu = (
@@ -84,6 +88,20 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={signOut}>Sign out</MenuItem>
+    </Menu>
+  );
+
+  const renderSignInMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={signIn}>Sign in</MenuItem>
     </Menu>
   );
 
@@ -126,7 +144,7 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
-      {renderSignOutMenu}
+      {currentUser ? renderSignOutMenu : renderSignInMenu}
     </div>
   );
 }
