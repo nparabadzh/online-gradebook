@@ -91,7 +91,10 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar style={{ background: "#2E3B55" }} position="static">
         <Toolbar>
-          <Link to="/" className={classes.link}>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Online Gradebook
+          </Typography>
+          {/* <Link to="/" className={classes.link}>
             <IconButton
               edge="start"
               className={classes.menuButton}
@@ -102,12 +105,12 @@ export default function PrimarySearchAppBar() {
                 Online Gradebook
               </Typography>
             </IconButton>
-          </Link>
-          <div className={classes.navlinks}>
+          </Link> */}
+          {/* <div className={classes.navlinks}>
             <Link to="/my_classes" className={classes.link}>
               My Classes
             </Link>
-          </div>
+          </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
