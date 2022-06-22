@@ -1,17 +1,14 @@
 package com.example.onlinegradebook.model;
 
 import com.example.onlinegradebook.constant.RoleType;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
-
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
-    private Integer id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int userId;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -24,6 +21,15 @@ public class User {
 
     @Column(name = "role")
     private RoleType role;
+
+//    @OneToOne(mappedBy = "user")
+//    private Employee employee;
+//
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Student student;
+//
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Parent parent;
 
     public User() {
     }
@@ -68,6 +74,30 @@ public class User {
     }
 
     public int getID(){
-        return id;
+        return userId;
     }
+
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
+//
+//    public Student getStudent() {
+//        return student;
+//    }
+//
+//    public void setStudent(Student student) {
+//        this.student = student;
+//    }
+//
+//    public Parent getParent() {
+//        return parent;
+//    }
+//
+//    public void setParent(Parent parent) {
+//        this.parent = parent;
+//    }
 }

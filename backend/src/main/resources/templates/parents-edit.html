@@ -8,19 +8,17 @@
 </head>
 
 <body>
-<h3>Edit the employee</h3>
+<h3>Edit the parent</h3>
 
-<form action="#" th:action="@{/employees/edit/{id}(id=${employee.getID()})}" th:object="${employee}" th:method="post">
+<form action="#" th:action="@{/parents/edit/{id}(id=${parent.getID()})}" th:object="${parent}" th:method="post">
     <p>Name: <input type="text" th:field="*{user.name}" /></p>
     <p>Address: <input type="text" th:field="*{user.address}" /></p>
     <p>EGN: <input type="text" th:field="*{user.EGN}" /></p>
-    <p>Qualifications: <input type="text" th:field="*{qualification}" /></p>
     <p>Role: <select name="role">
         <option th:each="roles:${T(com.example.onlinegradebook.constant.RoleType).values()}"
                 th:value="${roles}"
                 th:text="${roles}"></option>
     </select></p>
-    <p>Salary: <input type="text" th:field="*{salary}" /></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
 

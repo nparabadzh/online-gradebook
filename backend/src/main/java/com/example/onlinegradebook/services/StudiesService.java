@@ -34,8 +34,7 @@ public class StudiesService {
         Studies studiesInDB = studiesRepository.findById(studies.getID()).orElse(null);
         if (studiesInDB != null) {
             studiesInDB.setSubject(studies.getSubject());
-            studiesInDB.setGrade(studies.getGrade());
-            studiesInDB.setStudent(studies.getStudent());
+            studiesInDB.setSchoolClass(studies.getSchoolClass());
             studiesRepository.save(studiesInDB);
         } else {
             throw new Exception("Studies not found");

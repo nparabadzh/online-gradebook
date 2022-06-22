@@ -1,6 +1,8 @@
 package com.example.onlinegradebook.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="schools")
@@ -8,7 +10,7 @@ public class School {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int schoolID;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -16,21 +18,25 @@ public class School {
     @Column(name = "address")
     private String address;
 
+    @OneToMany (mappedBy =  "school", cascade = CascadeType.ALL)
+    private  List<SchoolClass> classes;
+
     public School() {
+        classes = new ArrayList<>();
     }
 
-    public School(int schoolID, String name, String address) {
-        this.schoolID = schoolID;
+    public School(String name, String address, List<SchoolClass> classes) {
         this.name = name;
         this.address = address;
+        this.classes = classes;
     }
 
     public int getID() {
-        return schoolID;
+        return id;
     }
 
-    public void setID(int schoolID) {
-        this.schoolID = schoolID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,4 +55,15 @@ public class School {
         this.address = address;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<SchoolClass> getEmployees() {
+        return classes;
+    }
+
+    public void setEmployees(List<SchoolClass> classes) {
+        this.classes = classes;
+    }
 }

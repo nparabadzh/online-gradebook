@@ -14,9 +14,9 @@
 <table>
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Address</th>
+        <th>Employees</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -26,9 +26,16 @@
         <td colspan="2">No schools available</td>
     </tr>
     <tr th:each="school : ${schools}">
-        <td><span th:text="${school.getID()}"> </span></td>
-        <td><span th:text="${school.getName()}"> </span></td>
+        <td><span th:text="${school.name}"> </span></td>
         <td><span th:text="${school.getAddress()}"> </span></td>
+<!--        <tr th:each="employee: ${schools.employees}">-->
+<!--            <td><span th:text="${employee.getName()}"> </span></td>-->
+<!--            <td><span th:text="${employee.getAddress()}"> </span></td>-->
+<!--            <td><span th:text="${employee.getEGN()}"> </span></td>-->
+<!--            <td><span th:text="${employee.getQualification()}"> </span></td>-->
+<!--            <td><span th:text="${employee.getRole()}"> </span></td>-->
+<!--            <td><span th:text="${employee.getSalary()}"> </span></td>-->
+<!--        </tr>-->
         <td><a th:href="@{/schools/edit/{id}(id=${school.getID()})}">Edit</a></td>
         <td><a th:href="@{/schools/delete/{id}(id=${school.getID()})}">Delete</a></td>
     </tr>
