@@ -1,11 +1,3 @@
-/*
- * Copyright © 2010-2022, Smule Inc – All Rights Reserved.
- * Reproduction and distribution are forbidden. No part of this code source
- * shall be reproduced, stored in a retrieval system, or
- * transmitted by any other means, electronic, mechanical, photocopying,
- * recording, or otherwise, without written permission from the Company.
- */
-
 import React, { forwardRef } from "react";
 import { NavLink as RouterLink, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
