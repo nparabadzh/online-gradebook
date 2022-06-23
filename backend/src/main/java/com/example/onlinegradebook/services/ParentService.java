@@ -27,6 +27,7 @@ public class ParentService {
     }
 
     public void addParent(@ModelAttribute Parent parent) {
+        userRepository.save(parent.getUser());
         parentRepository.save(parent);
     }
 

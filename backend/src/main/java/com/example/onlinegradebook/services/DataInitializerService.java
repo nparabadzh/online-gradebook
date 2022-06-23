@@ -115,11 +115,11 @@ public class DataInitializerService implements CommandLineRunner {
 //        employeeRepository.save(new Employee(userRepository.getById(3), "Sports", 1400,
 //                schoolRepository.getById(1)));
 //        employeeRepository.save(new Employee(userRepository.getById(4), "Philosophy", 2200,
-//                schoolRepository.getById(2)));
+//                schoolRepository.getById(4)));
 //        employeeRepository.save(new Employee(userRepository.getById(5), "English", 1700,
-//                schoolRepository.getById(2)));
+//                schoolRepository.getById(4)));
 //        employeeRepository.save(new Employee(userRepository.getById(6), "Business", 1600,
-//                schoolRepository.getById(2)));
+//                schoolRepository.getById(4)));
 //
 //        //Generating Students
 //        studentRepository.save(new Student(userRepository.getById(7), schoolClassRepository.getById(1)));

@@ -26,6 +26,7 @@ public class StudentService {
     }
 
     public void addStudent(@ModelAttribute Student student) {
+        userRepository.save(student.getUser());
         studentRepository.save(student);
     }
 
