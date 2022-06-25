@@ -1,7 +1,11 @@
 package com.example.onlinegradebook.controller;
 
+import com.example.onlinegradebook.model.Employee;
 import com.example.onlinegradebook.model.School;
+import com.example.onlinegradebook.model.Student;
+import com.example.onlinegradebook.services.EmployeeService;
 import com.example.onlinegradebook.services.SchoolService;
+import com.example.onlinegradebook.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,12 @@ import java.util.List;
 public class SchoolController {
     @Autowired
     private SchoolService schoolServices;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping(path = "/schools")
     public String showSchoolsPage(Model model) {

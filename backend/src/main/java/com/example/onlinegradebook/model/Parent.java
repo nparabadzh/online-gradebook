@@ -1,6 +1,7 @@
 package com.example.onlinegradebook.model;
 
 import com.example.onlinegradebook.constant.RoleType;
+import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,33 +9,50 @@ import java.util.List;
 
 @Entity
 @Table(name="parents")
-public class Parent extends User{
+public class Parent{
 
     @Id
+    @Column(name = "parent_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
-    @ManyToMany
-    private List<Student> children;
+    @OneToMany
+    List<Student> students;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    User user;
 
     public Parent() {
-        this.children = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    public Parent(String name, String EGN, String address, RoleType role, List<Student> children) {
-        super(name, EGN, address, role);
-        this.children = children;
+    public Parent(User user, List<Student> students) {
+        this.students = students;
+        this.user = user;
     }
 
-    public List<Student> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Student> children) {
-        this.children = children;
-    }
-
-    public int getID(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

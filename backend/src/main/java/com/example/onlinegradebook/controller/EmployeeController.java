@@ -41,7 +41,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employees/edit/{id}")
-    public String updateEmployee(@ModelAttribute Employee employee) throws Exception {
+    public String editEmployee(@ModelAttribute Employee employee) throws Exception {
         employeeServices.updateEmployee(employee);
         return "redirect:/employees";
     }

@@ -12,43 +12,36 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    int id;
+
+    @OneToOne
+    Employee teacher;
 
     @OneToMany
-    private List<Employee> teachers;
-
-    @OneToMany
-    private List<Topic> topics;
+    List<Topic> topics;
 
     @Column(name = "intended_for")
-    private Year intendedFor;
+    Year intendedFor;
+
+    @OneToMany
+    @JoinColumn(name = "student_id", nullable = true)
+    List<Grades> grades;
 
     public Subject() {
-        this.teachers = new ArrayList<>();
-        this.topics = new ArrayList<>();
+
     }
 
     public Subject(Year intendedFor) {
-        this.teachers = new ArrayList<>();
-        this.topics = new ArrayList<>();
         this.intendedFor = intendedFor;
     }
 
-    public Subject(List<Employee> teachers, List<Topic> topics, Year intendedFor) {
-        this.teachers = teachers;
+    public Subject(Employee teacher, List<Topic> topics, Year intendedFor) {
+        this.teacher = teacher;
         this.topics = topics;
         this.intendedFor = intendedFor;
     }
 
-    public List<Employee> getTeachers() {
-        return teachers;
-    }
-
-    public void setTeachers(List<Employee> teachers) {
-        this.teachers = teachers;
-    }
-
-    public List<Topic> getTopics() {
+       public List<Topic> getTopics() {
         return topics;
     }
 
@@ -64,7 +57,27 @@ public class Subject {
         this.intendedFor = intendedFor;
     }
 
-    public int getID(){
+    public Employee getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Employee teacher) {
+        this.teacher = teacher;
+    }
+
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Grades> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grades> grades) {
+        this.grades = grades;
     }
 }

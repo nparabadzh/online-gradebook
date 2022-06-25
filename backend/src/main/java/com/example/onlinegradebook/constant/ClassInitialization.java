@@ -1,5 +1,5 @@
 package com.example.onlinegradebook.constant;
 
-public enum Class {
+public enum ClassInitialization {
     A, B, C, D, E, F, G, H, I, J
 }

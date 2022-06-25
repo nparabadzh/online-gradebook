@@ -1,6 +1,5 @@
 package com.example.onlinegradebook.model;
 
-import com.example.onlinegradebook.constant.Class;
 import com.example.onlinegradebook.constant.WeekDay;
 
 import javax.persistence.*;
@@ -11,20 +10,22 @@ import java.sql.Time;
 public class SchoolSchedule {
 
     @Id
+    @Column(name = "school_schedule_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
     @Column(name = "week_day")
-    private WeekDay weekDay;
+    WeekDay weekDay;
 
     @ManyToOne
-    private Subject subject;
+    @JoinColumn(name = "subject_id", nullable = true)
+    Subject subject;
 
     @Column(name = "starts_at")
-    private Time startsAt;
+    Time startsAt;
 
     @Column(name = "ends_at")
-    private Time endsAt;
+    Time endsAt;
 
     public SchoolSchedule() {
     }
@@ -68,7 +69,11 @@ public class SchoolSchedule {
         this.endsAt = endsAt;
     }
 
-    public int getID(){
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

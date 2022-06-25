@@ -31,7 +31,7 @@ public class AbsenceService {
     }
 
     public void updateAbsence(@ModelAttribute Absence absence) throws Exception {
-        Absence absenceInDB = absenceRepository.findById(absence.getID()).orElse(null);
+        Absence absenceInDB = absenceRepository.findById(absence.getId()).orElse(null);
         if (absenceInDB != null) {
             absenceInDB.setStudent(absence.getStudent());
             absenceInDB.setDay(absence.getDay());

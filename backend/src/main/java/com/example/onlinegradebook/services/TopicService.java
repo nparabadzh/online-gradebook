@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Service
-@Transactional
 public class TopicService {
     @Autowired
     private TopicRepository topicRepository;
@@ -31,7 +30,7 @@ public class TopicService {
     }
 
     public void updateTopic(@ModelAttribute Topic topic) throws Exception {
-        Topic topicInDB = topicRepository.findById(topic.getID()).orElse(null);
+        Topic topicInDB = topicRepository.findById(topic.getId()).orElse(null);
         if (topicInDB != null) {
             topicInDB.setTopic(topic.getTopic());
             topicInDB.setTakingDate(topic.getTakingDate());

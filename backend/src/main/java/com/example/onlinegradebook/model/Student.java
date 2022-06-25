@@ -1,51 +1,58 @@
 package com.example.onlinegradebook.model;
 
-import com.example.onlinegradebook.constant.Class;
+import com.example.onlinegradebook.constant.ClassInitialization;
 import com.example.onlinegradebook.constant.RoleType;
 import com.example.onlinegradebook.constant.Year;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="students")
-public class Student extends User {
+public class Student {
 
     @Id
+    @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    int id;
 
-    @Column(nullable = false)
-    private Year year;
+    @OneToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    SchoolClass schoolClass;
 
-    @Column(name = "class")
-    private Class classes;
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    User user;
 
     public Student() {
     }
 
-    public Student(String name, String EGN, String address, RoleType role, Year year, Class classes) {
-        super(name, EGN, address, role);
-        this.year = year;
-        this.classes = classes;
+    public Student(User user, SchoolClass schoolClassIn) {
+        this.user = user;
+        this.schoolClass = schoolClassIn;
     }
 
-    public Year getYear() {
-        return year;
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
     }
 
-    public void setYear(Year year) {
-        this.year = year;
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
     }
 
-    public Class getClasses() {
-        return classes;
+    public User getUser() {
+        return user;
     }
 
-    public void setClasses(Class classes) {
-        this.classes = classes;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getID(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

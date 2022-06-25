@@ -1,38 +1,48 @@
 package com.example.onlinegradebook.model;
 
 import com.example.onlinegradebook.constant.RoleType;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
-
     @Id
-    @GeneratedValue(strategy=GenerationType.TABLE)
-    private Integer id;
+    @Column(name = "users_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
 
     @Column(nullable = false, length = 100)
-    private String name;
+    String name;
 
-    @Column(nullable = false, length = 100)
-    private String EGN;
+    @Column(nullable = false, length = 10)
+    String EGN;
 
     @Column(length = 200)
-    private String address;
+    String address;
 
     @Column(name = "role")
-    private RoleType role;
+    RoleType role;
+
+    @OneToOne(mappedBy = "user")
+    Employee employee;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    Student student;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    Parent parent;
 
     public User() {
     }
 
-    public User(String name, String EGN, String address, RoleType role) {
+    public User(String name, String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
         this.name = name;
         this.EGN = EGN;
         this.address = address;
         this.role = role;
+        this.employee = employee;
+        this.student = student;
+        this.parent = parent;
     }
 
     public String getName() {
@@ -67,7 +77,35 @@ public class User {
         this.role = role;
     }
 
-    public int getID(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Parent getParent() {
+        return parent;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 }

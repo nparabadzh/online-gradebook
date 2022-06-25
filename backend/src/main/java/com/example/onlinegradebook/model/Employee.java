@@ -6,11 +6,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="employees")
-public class Employee extends User {
+public class Employee{
 
     @Id
+    @Column(name = "employee_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(name = "qualification")
     String qualification;
@@ -18,13 +19,22 @@ public class Employee extends User {
     @Column(name = "salary")
     double salary;
 
+    @OneToOne
+    @JoinColumn(name = "school_id", nullable = false)
+    School school;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    User user;
+
     public Employee() {
     }
 
-    public Employee(String name, String EGN, String address, RoleType role, String qualification, double salary) {
-        super(name, EGN, address, role);
+    public Employee(User user, String qualification, double salary, School school) {
+        this.user = user;
         this.qualification = qualification;
         this.salary = salary;
+        this.school = school;
     }
 
     public String getQualification() {
@@ -43,9 +53,27 @@ public class Employee extends User {
         this.salary = salary;
     }
 
-    public int getID(){
+    public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

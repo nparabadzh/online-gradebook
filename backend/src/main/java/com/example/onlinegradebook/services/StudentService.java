@@ -2,6 +2,7 @@ package com.example.onlinegradebook.services;
 
 import com.example.onlinegradebook.model.Student;
 import com.example.onlinegradebook.repositories.StudentRepository;
+import com.example.onlinegradebook.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +17,16 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<Student> findAll() {
         List<Student> students = studentRepository.findAll();
         return students;
     }
 
     public void addStudent(@ModelAttribute Student student) {
+        userRepository.save(student.getUser());
         studentRepository.save(student);
     }
 
@@ -31,14 +36,11 @@ public class StudentService {
     }
 
     public void updateStudent(@ModelAttribute Student student) throws Exception {
-        Student studentInDB = studentRepository.findById(student.getID()).orElse(null);
+        Student studentInDB = studentRepository.findById(student.getId()).orElse(null);
         if (studentInDB != null) {
-            studentInDB.setName(student.getName());
-            studentInDB.setEGN(student.getEGN());
-            studentInDB.setAddress(student.getAddress());
-            studentInDB.setRole(student.getRole());
-            studentInDB.setYear(student.getYear());
-            studentInDB.setClasses(student.getClasses());
+            studentInDB.setUser(student.getUser());
+            studentInDB.setSchoolClass(student.getSchoolClass());
+            userRepository.save(studentInDB.getUser());
             studentRepository.save(studentInDB);
         } else {
             throw new Exception("Student not found");

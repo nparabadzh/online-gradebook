@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+// import axios from "axios";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
+import { setCurrentUser } from "../../redux/user/actions";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -17,27 +18,40 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const signIn = () => {
-    axios
-      .post(`/login`, {
-        email,
-        password,
-      })
-      .then((res) => {
-        if (res.data.message === "logged in") {
-          dispatch(setCurrentUser(res.data.user));
-          setError(false);
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        setError(true);
-        console.log(error);
-      });
+    // axios
+    //   .post(`/login`, {
+    //     email,
+    //     password,
+    //   })
+    //   .then((res) => {
+    //     if (res.data.message === "logged in") {
+    //       dispatch(setCurrentUser(res.data.user));
+    //       setError(false);
+    //       navigate("/");
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     setError(true);
+    //     console.log(error);
+    //   });
+    if (email === "admin@admin.com" && password === "admin") {
+      dispatch(
+        setCurrentUser({
+          name: "Admin",
+          email: "admin@admin.com",
+          role: "admin",
+        })
+      );
+      setError(false);
+      navigate("/");
+    } else {
+      setError(true);
+    }
   };
 
   return (
-    <div style={{ justifyContent: "center" }}>
-      <div style={{ width: "80%", margin: 30 }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "60%", margin: 30 }}>
         <form
           style={{
             padding: 30,

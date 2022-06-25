@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Online GradeBook app</title>
+</head>
+
+<body>
+<h1>Parents</h1>
+<br />
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>EGN</th>
+        <th>Children</th>
+        <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${parents.empty}">
+        <td colspan="2">No parents available</td>
+    </tr>
+    <tr th:each="parent : ${parents}">
+        <td><span th:text="${parent.user.name}"> </span></td>
+        <td><span th:text="${parent.user.address}"> </span></td>
+        <td><span th:text="${parent.user.EGN}"> </span></td>
+        <td><span th:text="${parent.user.role}"> </span></td>
+        <td><a th:href="@{/parents/edit/{id}(id=${parent.getId()})}">Edit</a></td>
+        <td><a th:href="@{/parents/delete/{id}(id=${parent.getId()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

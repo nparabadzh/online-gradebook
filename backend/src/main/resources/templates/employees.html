@@ -14,7 +14,6 @@
 <table>
     <thead>
     <tr>
-        <th>Id</th>
         <th>Name</th>
         <th>Address</th>
         <th>EGN</th>
@@ -30,15 +29,14 @@
         <td colspan="2">No employees available</td>
     </tr>
     <tr th:each="employee : ${employees}">
-        <td><span th:text="${employee.getID()}"> </span></td>
-        <td><span th:text="${employee.getName()}"> </span></td>
-        <td><span th:text="${employee.getAddress()}"> </span></td>
-        <td><span th:text="${employee.getEGN()}"> </span></td>
+        <td><span th:text="${employee.user.name}"> </span></td>
+        <td><span th:text="${employee.user.address}"> </span></td>
+        <td><span th:text="${employee.user.EGN}"> </span></td>
         <td><span th:text="${employee.getQualification()}"> </span></td>
-        <td><span th:text="${employee.getRole()}"> </span></td>
+        <td><span th:text="${employee.user.role}"> </span></td>
         <td><span th:text="${employee.getSalary()}"> </span></td>
-        <td><a th:href="@{/employees/edit/{id}(id=${employee.getID()})}">Edit</a></td>
-        <td><a th:href="@{/employees/delete/{id}(id=${employee.getID()})}">Delete</a></td>
+        <td><a th:href="@{/employees/edit/{id}(id=${employee.getId()})}">Edit</a></td>
+        <td><a th:href="@{/employees/delete/{id}(id=${employee.getId()})}">Delete</a></td>
     </tr>
     </tbody>
 </table>

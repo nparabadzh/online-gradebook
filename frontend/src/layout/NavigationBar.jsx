@@ -71,6 +71,10 @@ export default function PrimarySearchAppBar() {
     navigate("/");
   };
 
+  const signIn = () => {
+    navigate("/signin");
+  };
+
   const menuId = "primary-search-account-menu";
 
   const renderSignOutMenu = (
@@ -87,11 +91,28 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  const renderSignInMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={signIn}>Sign in</MenuItem>
+    </Menu>
+  );
+
   return (
     <div className={classes.grow}>
       <AppBar style={{ background: "#2E3B55" }} position="static">
         <Toolbar>
-          <Link to="/" className={classes.link}>
+          <Typography className={classes.title} variant="h6" noWrap>
+            Online Gradebook
+          </Typography>
+          {/* <Link to="/" className={classes.link}>
             <IconButton
               edge="start"
               className={classes.menuButton}
@@ -102,12 +123,12 @@ export default function PrimarySearchAppBar() {
                 Online Gradebook
               </Typography>
             </IconButton>
-          </Link>
-          <div className={classes.navlinks}>
+          </Link> */}
+          {/* <div className={classes.navlinks}>
             <Link to="/my_classes" className={classes.link}>
               My Classes
             </Link>
-          </div>
+          </div> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
@@ -123,7 +144,7 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
-      {renderSignOutMenu}
+      {currentUser ? renderSignOutMenu : renderSignInMenu}
     </div>
   );
 }

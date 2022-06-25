@@ -31,11 +31,12 @@ public class SubjectService {
     }
 
     public void updateSubject(@ModelAttribute Subject subject) throws Exception {
-        Subject subjectInDB = subjectRepository.findById(subject.getID()).orElse(null);
+        Subject subjectInDB = subjectRepository.findById(subject.getId()).orElse(null);
         if (subjectInDB != null) {
             subjectInDB.setTopics(subject.getTopics());
             subjectInDB.setIntendedFor(subject.getIntendedFor());
-            subjectInDB.setTeachers(subject.getTeachers());
+            subjectInDB.setTeacher(subject.getTeacher());
+            subjectInDB.setGrades(subject.getGrades());
             subjectRepository.save(subjectInDB);
         } else {
             throw new Exception("Subject not found");
