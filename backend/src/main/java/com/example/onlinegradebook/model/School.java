@@ -63,13 +63,4 @@ public class School {
     public void setAddress(String address) {
         this.address = address;
     }
-
-
-    public List<SchoolClass> getEmployees() {
-        return classes;
-    }
-
-    public void setEmployees(List<SchoolClass> classes) {
-        this.classes = classes;
-    }
 }
