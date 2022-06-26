@@ -2,6 +2,7 @@ package com.example.onlinegradebook.model;
 
 import com.example.onlinegradebook.constant.RoleType;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -12,13 +13,28 @@ public class User {
     int id;
 
     @Column(nullable = false, length = 100)
-    String name;
+    String username;
+
+    @Column(nullable = false, length = 100)
+    String firstName;
+
+    @Column(nullable = false, length = 100)
+    String lastName;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToMany(mappedBy = "userRoleAssociationKey.user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRoleAssociation> userRoleAssociation;
 
     @Column(nullable = false, length = 10)
     String EGN;
 
     @Column(length = 200)
     String address;
+
+    @Column(length = 200)
+    String email;
 
     @Column(name = "role")
     RoleType role;
@@ -35,8 +51,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
-        this.name = name;
+    public User(String username, String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
+        this.username = username;
         this.EGN = EGN;
         this.address = address;
         this.role = role;
@@ -45,12 +61,20 @@ public class User {
         this.parent = parent;
     }
 
-    public String getName() {
-        return name;
+    public User(String id, String username, String password, String firstName, String lastName) {
+        this.id = Integer.parseInt(id);
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getEGN() {
@@ -107,5 +131,13 @@ public class User {
 
     public void setParent(Parent parent) {
         this.parent = parent;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Set<UserRoleAssociation> getUserRoleAssociation() {
+        return userRoleAssociation;
     }
 }
