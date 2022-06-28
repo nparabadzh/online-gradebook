@@ -8,6 +8,23 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import { setCurrentUser } from "../../redux/user/actions";
 
+const USERS = [
+  {
+    name: "Natali Arabadzhiyska",
+    email: "admin@admin.com",
+    password: "admin",
+    role: "Admin",
+    id: 2,
+  },
+  {
+    name: "Pencho Ivanov",
+    email: "student@student.com",
+    password: "student",
+    role: "Student",
+    id: 1,
+  },
+];
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -34,12 +51,14 @@ const SignUp = () => {
     //     setError(true);
     //     console.log(error);
     //   });
-    if (email === "admin@admin.com" && password === "admin") {
+    const foundUser = findUser(email, password);
+    if (foundUser) {
       dispatch(
         setCurrentUser({
-          name: "Admin",
-          email: "admin@admin.com",
-          role: "admin",
+          name: foundUser.name,
+          email: foundUser.email,
+          role: foundUser.role,
+          id: foundUser.id,
         })
       );
       setError(false);
@@ -47,6 +66,13 @@ const SignUp = () => {
     } else {
       setError(true);
     }
+  };
+
+  const findUser = (email, password) => {
+    const foundUser = USERS.find(
+      (el) => el.email === email && el.password === password
+    );
+    return foundUser;
   };
 
   return (

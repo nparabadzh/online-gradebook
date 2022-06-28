@@ -2,6 +2,8 @@ package com.example.onlinegradebook.controller;
 
 import com.example.onlinegradebook.model.Subject;
 import com.example.onlinegradebook.services.SubjectService;
+import com.google.gson.Gson;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,22 +11,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class SubjectController {
     @Autowired
     private SubjectService subjectServices;
 
     @GetMapping(path = "/subjects")
-    public String showSubjectsPage(Model model) {
+    public List<Subject> showSubjectsPage(Model model) {
         List<Subject> subjects = subjectServices.findAll();
         model.addAttribute("subjects", subjects);
-        return "subjects";
+        return subjects;
     }
 
     @GetMapping(path = "/subjects/add")
-    public String showAddSubjectPage(Model model) {
-        model.addAttribute("subject", new Subject());
-        return "subjects-add";
+    public Subject showAddSubjectPage(Model model) {
+        Subject newSubject = new Subject();
+        model.addAttribute("subject", newSubject);
+        return newSubject;
     }
 
     @PostMapping(path = "/subjects/add")
@@ -50,5 +53,10 @@ public class SubjectController {
     public String deleteSubject(@PathVariable("id") int id) {
         subjectServices.deleteSubject(id);
         return "redirect:/subjects";
+    }
+
+    @GetMapping("/subjects/student/{id}")
+    public List<Subject> getAllSubjectsForStudentId(@PathVariable("id") int id) {
+        return subjectServices.findAllSubjectsForStudentWithId(id);
     }
 }

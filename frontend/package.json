@@ -40,5 +40,6 @@
     "@babel/preset-env": "7.16.8",
     "@babel/preset-react": "7.16.7",
     "eslint": "7.0.0"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

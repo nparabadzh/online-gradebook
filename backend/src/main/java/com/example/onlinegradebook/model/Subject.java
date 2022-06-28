@@ -14,34 +14,46 @@ public class Subject {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     int id;
 
+    @Column(name = "subject_name")
+    String subject_name;
+
     @OneToOne
     Employee teacher;
 
     @OneToMany
     List<Topic> topics;
 
-    @Column(name = "intended_for")
-    Year intendedFor;
+    @ManyToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    SchoolClass schoolClass;
 
     @OneToMany
     @JoinColumn(name = "student_id", nullable = true)
     List<Grades> grades;
 
     public Subject() {
-
     }
 
-    public Subject(Year intendedFor) {
-        this.intendedFor = intendedFor;
+    public Subject(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
     }
 
-    public Subject(Employee teacher, List<Topic> topics, Year intendedFor) {
+    public Subject(String subject_name, Employee teacher, List<Topic> topics, SchoolClass schoolClass) {
+        this.subject_name = subject_name;
         this.teacher = teacher;
         this.topics = topics;
-        this.intendedFor = intendedFor;
+        this.schoolClass = schoolClass;
     }
 
-       public List<Topic> getTopics() {
+    public String getSubject_name() {
+        return subject_name;
+    }
+
+    public void setSubject_name(String subject_name) {
+        this.subject_name = subject_name;
+    }
+
+    public List<Topic> getTopics() {
         return topics;
     }
 
@@ -49,12 +61,12 @@ public class Subject {
         this.topics = topics;
     }
 
-    public Year getIntendedFor() {
-        return intendedFor;
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
     }
 
-    public void setIntendedFor(Year intendedFor) {
-        this.intendedFor = intendedFor;
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
     }
 
     public Employee getTeacher() {

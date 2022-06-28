@@ -1,7 +1,10 @@
 package com.example.onlinegradebook.services;
 
+import com.example.onlinegradebook.model.SchoolClass;
+import com.example.onlinegradebook.model.Student;
 import com.example.onlinegradebook.model.Subject;
 import com.example.onlinegradebook.repositories.SubjectRepository;
+import com.example.onlinegradebook.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,12 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class SubjectService {
+
     @Autowired
     private SubjectRepository subjectRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public List<Subject> findAll() {
         List<Subject> subjects = subjectRepository.findAll();
@@ -33,8 +40,9 @@ public class SubjectService {
     public void updateSubject(@ModelAttribute Subject subject) throws Exception {
         Subject subjectInDB = subjectRepository.findById(subject.getId()).orElse(null);
         if (subjectInDB != null) {
+            subjectInDB.setSubject_name(subject.getSubject_name());
             subjectInDB.setTopics(subject.getTopics());
-            subjectInDB.setIntendedFor(subject.getIntendedFor());
+            subjectInDB.setSchoolClass(subject.getSchoolClass());
             subjectInDB.setTeacher(subject.getTeacher());
             subjectInDB.setGrades(subject.getGrades());
             subjectRepository.save(subjectInDB);
@@ -47,5 +55,13 @@ public class SubjectService {
         Subject subject = subjectRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid subject Id:" + id));
         subjectRepository.delete(subject);
+    }
+
+    public List<Subject> findAllSubjectsForStudentWithId(@PathVariable("id") int id) {
+        Optional<Student> student = studentRepository.findById(id);
+        SchoolClass schoolClass = student.get().getSchoolClass();
+        int forClass = schoolClass.getId();
+        List<Subject> subjects = subjectRepository.getAllSubjectsForClassId(forClass);
+        return subjects;
     }
 }

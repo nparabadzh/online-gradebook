@@ -4,8 +4,8 @@ import { makeStyles } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import NavigationBar from "./NavigationBar";
 import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,19 +25,19 @@ const Main = (props) => {
   const { children } = props;
 
   const classes = useStyles();
-  const isDesktop = true;
+  // const isDesktop = true;
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+  // const [openSidebar, setOpenSidebar] = useState(false);
 
-  const handleSidebarOpen = () => {
-    setOpenSidebar(true);
-  };
+  // const handleSidebarOpen = () => {
+  //   setOpenSidebar(true);
+  // };
 
-  const handleSidebarClose = () => {
-    setOpenSidebar(false);
-  };
+  // const handleSidebarClose = () => {
+  //   setOpenSidebar(false);
+  // };
 
-  const shouldOpenSidebar = isDesktop ? true : openSidebar;
+  // const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   return (
     <>
@@ -45,15 +45,11 @@ const Main = (props) => {
       <div
         className={clsx({
           [classes.root]: true,
-          [classes.shiftContent]: isDesktop,
+          [classes.shiftContent]: true,
         })}
       >
-        <NavigationBar />
-        <Sidebar
-          onClose={handleSidebarClose}
-          open={shouldOpenSidebar}
-          variant={isDesktop ? "persistent" : "temporary"}
-        />
+        <Topbar />
+        <Sidebar variant={"persistent" } />
         <main className={classes.content}>
           <Box>
             <Paper>{children}</Paper>

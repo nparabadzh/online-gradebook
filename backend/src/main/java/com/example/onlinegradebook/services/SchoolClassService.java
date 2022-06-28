@@ -33,7 +33,6 @@ public class SchoolClassService {
         if (schoolClassInDB != null) {
             schoolClassInDB.setYear(schoolClass.getYear());
             schoolClassInDB.setClassInitialization(schoolClass.getClassInitialization());
-            schoolClassInDB.setSchool(schoolClass.getSchool());
             schoolClassInDB.setStudents(schoolClass.getStudents());
             schoolClassInDB.setSubjects(schoolClass.getSubjects());
             schoolClassRepository.save(schoolClassInDB);

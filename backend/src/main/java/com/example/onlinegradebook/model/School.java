@@ -19,7 +19,7 @@ public class School {
     @Column(name = "address")
     String address;
 
-    @OneToMany (mappedBy =  "school", cascade = CascadeType.ALL)
+    @OneToMany
     List<SchoolClass> classes;
 
     public School() {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import SignIn from "../Authentication/SignIn";
-import SignUp from "../Authentication/SignUp";
+import SignIn from "../authentication/SignIn";
+import SignUp from "../authentication/SignUp";
 import { useSelector } from "react-redux";
 
 const Login = () => {

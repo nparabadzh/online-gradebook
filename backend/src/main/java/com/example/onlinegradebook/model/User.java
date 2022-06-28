@@ -5,20 +5,17 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name="users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User {
     @Id
     @Column(name = "users_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @Column(nullable = false, length = 100)
-    String username;
-
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     String firstName;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     String lastName;
 
     @Column(name = "password")
@@ -27,8 +24,8 @@ public class User {
     @OneToMany(mappedBy = "userRoleAssociationKey.user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRoleAssociation> userRoleAssociation;
 
-    @Column(nullable = false, length = 10)
-    String EGN;
+    @Column(length = 10)
+    String egn;
 
     @Column(length = 200)
     String address;
@@ -39,21 +36,20 @@ public class User {
     @Column(name = "role")
     RoleType role;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne
     Employee employee;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
     Student student;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
     Parent parent;
 
     public User() {
     }
 
-    public User(String username, String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
-        this.username = username;
-        this.EGN = EGN;
+    public User(String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
+        this.egn = EGN;
         this.address = address;
         this.role = role;
         this.employee = employee;
@@ -61,28 +57,60 @@ public class User {
         this.parent = parent;
     }
 
-    public User(String id, String username, String password, String firstName, String lastName) {
-        this.id = Integer.parseInt(id);
-        this.username = username;
+    public User(int id, String email, String password, String firstName, String lastName) {
+        this.id = id;
+        this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
+    public User(String email, String password, String firstName, String lastName, String egn) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.egn = egn;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getEGN() {
-        return EGN;
+        return egn;
     }
 
     public void setEGN(String EGN) {
-        this.EGN = EGN;
+        this.egn = EGN;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
@@ -109,14 +137,6 @@ public class User {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public Student getStudent() {
         return student;
     }
@@ -135,6 +155,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<UserRoleAssociation> getUserRoleAssociation() {

@@ -43,12 +43,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     "&:hover": {
       color: "pink",
-      // borderBottom: '1px solid white',
     },
   },
+  flex: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
+  }
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Topbar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const navigate = useNavigate();
@@ -112,24 +117,13 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             Online Gradebook
           </Typography>
-          {/* <Link to="/" className={classes.link}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <Typography className={classes.title} variant="h6" noWrap>
-                Online Gradebook
-              </Typography>
-            </IconButton>
-          </Link> */}
-          {/* <div className={classes.navlinks}>
-            <Link to="/my_classes" className={classes.link}>
-              My Classes
-            </Link>
-          </div> */}
           <div className={classes.grow} />
+          {currentUser && (
+            <div className={classes.flex}>
+              <div>Name: {currentUser.name}</div>
+              <div>Role: {currentUser.role}</div>
+            </div>
+          )}
           <div className={classes.sectionDesktop}>
             <IconButton
               edge="end"
