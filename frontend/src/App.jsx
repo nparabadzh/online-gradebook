@@ -1,11 +1,13 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/index";
-import SignIn from "./pages/Authentication/SignIn";
-import SignUp from "./pages/Authentication/SignUp";
-// import Navbar from "./layout/NavigationBar";
-import Main from "./layout/Main";
 import { useSelector } from "react-redux";
+import "./App.css";
+
+import Home from "./pages/home/index";
+import SignIn from "./pages/authentication/SignIn";
+import SignUp from "./pages/authentication/SignUp";
+import Main from "./layout/Main";
+import Student from "./pages/student/index";
+
 
 function App() {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -18,6 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/student" element={<Student />} />
         </Routes>
       </Main>
     </div>

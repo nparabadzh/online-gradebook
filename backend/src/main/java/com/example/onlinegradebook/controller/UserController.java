@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
     @Autowired
     private UserService userServices;
 
     @GetMapping(path = "/users")
-    public String showUsersPage(Model model) {
+    public List<User> showUsersPage(Model model) {
         List<User> users = userServices.findAll();
         model.addAttribute("users", users);
-        return "users";
+        return users;
     }
 
     @GetMapping(path = "/users/add")
@@ -51,4 +51,5 @@ public class UserController {
         userServices.deleteUser(id);
         return "redirect:/users";
     }
+
 }

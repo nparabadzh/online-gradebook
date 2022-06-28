@@ -14,8 +14,8 @@ public class Grades {
     @Column(name = "grade")
     double grade;
 
-    @Column(name = "date")
-    Date date;
+//    @Column(name = "date")
+//    Date date;
 
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = true)
@@ -28,9 +28,9 @@ public class Grades {
     public Grades() {
     }
 
-    public Grades(double grade, Date date, Student student, Subject subject) {
+    public Grades(double grade, Student student, Subject subject) {
         this.grade = grade;
-        this.date = date;
+//        this.date = date;
         this.student = student;
         this.subject = subject;
     }
@@ -51,13 +51,13 @@ public class Grades {
         this.grade = grade;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public Student getStudent() {
         return student;

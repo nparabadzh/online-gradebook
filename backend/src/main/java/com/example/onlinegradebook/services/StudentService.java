@@ -58,12 +58,12 @@ public class StudentService {
         studentRepository.delete(student);
     }
 
-    public List<Student> findAllStudentsBySchool(@PathVariable("id") int id){
-        School school = this.studentRepository.getById(id).getSchoolClass().getSchool();
-        List<Student> studentIsFromSchool = new ArrayList<>();
-        school.getClasses().stream().forEach(o -> studentIsFromSchool.addAll(o.getStudents()));
-        return studentIsFromSchool;
-    }
+//    public List<Student> findAllStudentsBySchool(@PathVariable("id") int id){
+//        School school = this.studentRepository.getById(id).getSchoolClass().getSchool();
+//        List<Student> studentIsFromSchool = new ArrayList<>();
+//        school.getClasses().stream().forEach(o -> studentIsFromSchool.addAll(o.getStudents()));
+//        return studentIsFromSchool;
+//    }
 
     public List<Student> findAllStudentsByClass(@PathVariable("id") int id){
         SchoolClass schoolClass = this.studentRepository.getById(id).getSchoolClass();

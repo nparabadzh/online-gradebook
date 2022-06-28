@@ -35,7 +35,7 @@ public class GradesService {
         if (gradeInDB != null) {
 ;           gradeInDB.setGrade(grade.getGrade());
             gradeInDB.setSubject(grade.getSubject());
-            gradeInDB.setDate(grade.getDate());
+//            gradeInDB.setDate(grade.getDate());
             gradeInDB.setStudent(grade.getStudent());
             gradesRepository.save(gradeInDB);
         } else {

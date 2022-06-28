@@ -9,6 +9,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import SchoolIcon from "@material-ui/icons/School";
 import SubjectIcon from "@material-ui/icons/Subject";
+import AccessibilityIcon from '@material-ui/icons/Accessibility';
 
 import Logo from "../components/Logo";
 import SidebarNav from "./SidebarNav";
@@ -38,7 +39,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Sidebar = (props) => {
-  const { open, variant, onClose, className, ...rest } = props;
+  const { variant, className, ...rest } = props;
   const currentUser = useSelector((state) => state.user.currentUser);
 
   const classes = useStyles();
@@ -50,34 +51,40 @@ const Sidebar = (props) => {
       icon: <HomeIcon />,
     },
     {
+      title: "Student",
+      href: "/student",
+      icon: <AccessibilityIcon />,
+      requiredRole: ["Student"],
+    },
+    {
       title: "Classes",
       href: "/classes",
       icon: <ClassIcon />,
-      requiredRole: ["admin"],
+      requiredRole: ["Admin"],
     },
     {
       title: "Users",
       href: "/users",
       icon: <PeopleIcon />,
-      requiredRole: ["admin"],
+      requiredRole: ["Admin"],
     },
     {
       title: "Profile",
       href: "/profile",
       icon: <AccountBoxIcon />,
-      requiredRole: ["admin", "user"],
+      requiredRole: ["Admin", "User"],
     },
     {
       title: "Schools",
       href: "/schools",
       icon: <SchoolIcon />,
-      requiredRole: ["admin"],
+      requiredRole: ["Admin"],
     },
     {
       title: "Subjects",
       href: "/subjects",
       icon: <SubjectIcon />,
-      requiredRole: ["admin"],
+      requiredRole: ["Admin"],
     },
   ];
 
@@ -85,8 +92,7 @@ const Sidebar = (props) => {
     <Drawer
       anchor="left"
       classes={{ paper: classes.drawer }}
-      onClose={onClose}
-      open={open}
+      open={true}
       variant={variant}
     >
       <div {...rest} className={clsx(classes.root, className)}>

@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user_roles",  schema = "public")
+@Table(name = "user_roles")
 public class UserRoleAssociation implements Serializable {
 
     @EmbeddedId

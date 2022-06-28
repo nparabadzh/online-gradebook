@@ -2,7 +2,7 @@ package com.example.onlinegradebook.model;
 
 public class UserPost {
 
-    private String username;
+    private String email;
 
     private String password;
 
@@ -10,12 +10,16 @@ public class UserPost {
 
     private String lastName;
 
+    private String egn;
+
     public UserPost() {
     }
 
-    public String getUsername() {
-        return username;
-    }
+//    public String getId() {
+//        return id;
+//    }
+
+    public String getEmail() { return email; }
 
     public String getPassword() {
         return password;
@@ -28,4 +32,6 @@ public class UserPost {
     public String getLastName() {
         return lastName;
     }
+
+    public String getEgn() { return egn; }
 }

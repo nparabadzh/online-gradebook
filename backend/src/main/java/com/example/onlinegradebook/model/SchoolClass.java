@@ -22,10 +22,6 @@ public class SchoolClass {
     @Column(name = "class")
     ClassInitialization classInitialization;
 
-    @ManyToOne
-    @JoinColumn(name = "school_id", nullable = false)
-    School school;
-
     @OneToMany
     List<Student> students;
 
@@ -38,20 +34,11 @@ public class SchoolClass {
 
     }
 
-    public SchoolClass(Year year, ClassInitialization classInitialization, School school, List<Student> students, List<Subject> subjects) {
+    public SchoolClass(Year year, ClassInitialization classInitialization, List<Student> students, List<Subject> subjects) {
         this.year = year;
         this.classInitialization = classInitialization;
-        this.school = school;
         this.students = students;
         this.subjects = subjects;
-    }
-
-    public School getSchool() {
-        return school;
-    }
-
-    public void setSchool(School school) {
-        this.school = school;
     }
 
     public List<Student> getStudents() {

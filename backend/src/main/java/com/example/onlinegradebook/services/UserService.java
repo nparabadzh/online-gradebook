@@ -33,7 +33,7 @@ public class UserService {
     public void updateUser(@ModelAttribute User user) throws Exception {
         User userInDB = userRepository.findById(user.getId()).orElse(null);
         if (userInDB != null) {
-            userInDB.setUsername(user.getUsername());
+            userInDB.setEmail(user.getEmail());
             userInDB.setEGN(user.getEGN());
             userInDB.setAddress(user.getAddress());
             userInDB.setRole(user.getRole());
