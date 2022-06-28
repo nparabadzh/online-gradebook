@@ -13,10 +13,6 @@ public class UserPost {
     public UserPost() {
     }
 
-//    public String getId() {
-//        return id;
-//    }
-
     public String getUsername() {
         return username;
     }

@@ -3,22 +3,24 @@ package com.example.onlinegradebook.model;
 import com.example.onlinegradebook.constant.RoleType;
 import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Entity
 @Table(name="users")
 public class User {
     @Id
-    @Column(name = "users_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "users_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     String username;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     String firstName;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     String lastName;
 
     @Column(name = "password")
@@ -27,7 +29,7 @@ public class User {
     @OneToMany(mappedBy = "userRoleAssociationKey.user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRoleAssociation> userRoleAssociation;
 
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     String EGN;
 
     @Column(length = 200)
@@ -51,7 +53,9 @@ public class User {
     public User() {
     }
 
-    public User(String username, String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
+    public User(String username, String EGN, String address, RoleType role,
+                Employee employee, Student student, Parent parent,
+                String password, String firstName, String lastName) {
         this.username = username;
         this.EGN = EGN;
         this.address = address;
@@ -59,12 +63,18 @@ public class User {
         this.employee = employee;
         this.student = student;
         this.parent = parent;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public User(String id, String username, String password, String firstName, String lastName) {
-        this.id = Integer.parseInt(id);
+    public User(
+                String username, String password, String firstName, String lastName) {
+//        this.id = ThreadLocalRandom.current().nextInt(0, 10000 + 1);
         this.username = username;
         this.password = password;
+        this.EGN = "not set";
+        this.address = "not set";
         this.firstName = firstName;
         this.lastName = lastName;
     }

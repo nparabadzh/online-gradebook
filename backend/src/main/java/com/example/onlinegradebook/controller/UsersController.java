@@ -10,16 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 import static com.example.onlinegradebook.controller.UsersController.USERS_CONTROLLER_ENDPOINT;
 
-@RestController
+@Controller
 @RequestMapping(path = USERS_CONTROLLER_ENDPOINT)
 public class UsersController {
 
@@ -29,10 +27,11 @@ public class UsersController {
     private UserRepository userRepo;
 
     @PostMapping(path = "/user")
-    public ResponseEntity<User> createUser(UserPost userPost){
-        User user = new User(UUID.randomUUID().toString(),
+    public ResponseEntity<User> createUser(@RequestBody UserPost userPost){
+        User user = new User(/*UUID.randomUUID().toString(),*/
                 userPost.getUsername(),
-                BCrypt.hashpw(userPost.getPassword(), BCrypt.gensalt(10)),
+                userPost.getPassword(),
+//                BCrypt.hashpw(userPost.getPassword(), BCrypt.gensalt(10)),
                 userPost.getFirstName(),
                 userPost.getLastName());
         userRepo.save(user);
@@ -42,7 +41,7 @@ public class UsersController {
     @PostMapping(path = "/user/role")
     public ResponseEntity<User> assignRole(UserPost userPost){
         // TODO
-         User user = new User(UUID.randomUUID().toString(), userPost.getUsername(), BCrypt.hashpw(userPost.getPassword(), BCrypt.gensalt(10)),userPost.getFirstName(), userPost.getLastName());
+         User user = new User(/*UUID.randomUUID().toString(),*/ userPost.getUsername(), BCrypt.hashpw(userPost.getPassword(), BCrypt.gensalt(10)),userPost.getFirstName(), userPost.getLastName());
         userRepo.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
