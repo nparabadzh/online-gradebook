@@ -9,7 +9,8 @@ import PeopleIcon from "@material-ui/icons/People";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import SchoolIcon from "@material-ui/icons/School";
 import SubjectIcon from "@material-ui/icons/Subject";
-import AccessibilityIcon from '@material-ui/icons/Accessibility';
+import AccessibilityIcon from "@material-ui/icons/Accessibility";
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 
 import Logo from "../components/Logo";
 import SidebarNav from "./SidebarNav";
@@ -54,37 +55,43 @@ const Sidebar = (props) => {
       title: "Student",
       href: "/student",
       icon: <AccessibilityIcon />,
-      requiredRole: ["Student"],
+      requiredRole: ["STUDENT", "PARENT"],
     },
     {
       title: "Classes",
       href: "/classes",
       icon: <ClassIcon />,
-      requiredRole: ["Admin"],
+      requiredRole: ["ADMIN", "DIRECTOR", "TEACHER"],
     },
     {
       title: "Users",
       href: "/users",
       icon: <PeopleIcon />,
-      requiredRole: ["Admin"],
+      requiredRole: ["ADMIN"],
     },
     {
       title: "Profile",
       href: "/profile",
       icon: <AccountBoxIcon />,
-      requiredRole: ["Admin", "User"],
+      requiredRole: ["ADMIN", "USER", "DIRECTOR", "PARENT", "TEACHER"],
     },
     {
       title: "Schools",
       href: "/schools",
       icon: <SchoolIcon />,
-      requiredRole: ["Admin"],
+      requiredRole: ["ADMIN"],
     },
     {
       title: "Subjects",
       href: "/subjects",
       icon: <SubjectIcon />,
-      requiredRole: ["Admin"],
+      requiredRole: ["ADMIN"],
+    },
+    {
+      title: "Admin",
+      href: "/admin",
+      icon: <SupervisorAccountIcon />,
+      requiredRole: ["ADMIN"],
     },
   ];
 

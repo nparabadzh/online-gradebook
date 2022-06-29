@@ -19,7 +19,6 @@ public class SubjectController {
     @GetMapping(path = "/subjects")
     public List<Subject> showSubjectsPage(Model model) {
         List<Subject> subjects = subjectServices.findAll();
-        model.addAttribute("subjects", subjects);
         return subjects;
     }
 

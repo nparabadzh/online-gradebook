@@ -15,10 +15,9 @@ public class StudentController {
     private StudentService studentServices;
 
     @GetMapping(path = "/students")
-    public String showStudentsPage(Model model) {
+    public List<Student> showStudentsPage(Model model) {
         List<Student> students = studentServices.findAll();
-        model.addAttribute("students", students);
-        return "students";
+        return students;
     }
 
     @GetMapping(path = "/students/add")

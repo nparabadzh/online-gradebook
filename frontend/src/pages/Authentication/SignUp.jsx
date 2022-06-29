@@ -12,24 +12,26 @@ const SignUp = () => {
   const [password, setpassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
+  const egn = "1234567890";
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
   const signIn = () => {
     axios
-      .post(`/signUp`, {
+      .post(`/api/users/user`, {
         email,
         password,
-        first_name: firstName,
-        last_name: lastName,
+        firstName: firstName,
+        lastName: lastName,
+        egn,
       })
       .then((res) => {
-        if (res.statusText === "Created") {
+        if (res.data.message === "Created") {
+          dispatch(setCurrentUser(res.data.user));
           setError(false);
-          dispatch(setCurrentUser(res.data));
           navigate("/");
         }
       })

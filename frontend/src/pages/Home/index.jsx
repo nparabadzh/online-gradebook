@@ -9,7 +9,9 @@ const Home = () => {
   const renderHello = () => {
     return (
       <CardContent>
-        <Typography variant="h4">Hello {user.name}!</Typography>
+        <Typography variant="h4">
+          Hello, {user.firstName} {user.lastName}!
+        </Typography>
       </CardContent>
     );
   };

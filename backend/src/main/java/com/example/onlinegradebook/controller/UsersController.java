@@ -1,15 +1,13 @@
 package com.example.onlinegradebook.controller;
 
-import com.example.onlinegradebook.model.Login;
-import com.example.onlinegradebook.model.User;
-import com.example.onlinegradebook.model.UserPost;
-import com.example.onlinegradebook.model.UserRoleAssociation;
+import com.example.onlinegradebook.model.*;
 import com.example.onlinegradebook.repositories.UserRepository;
 import com.example.onlinegradebook.services.UserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,6 +42,7 @@ public class UsersController {
     @Autowired
     private UserService userServices;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping(path = "/user")
     public ResponseEntity<?> createUser(@RequestBody UserPost userPost){
         if(userRepo.existsByEmail(userPost.getEmail())){
@@ -57,9 +56,22 @@ public class UsersController {
                 encodedPassword,
                 userPost.getFirstName(),
                 userPost.getLastName(),
-                userPost.getEgn());
+                userPost.getEgn(),
+                userPost.getAddress(),
+                userPost.getRole());
         userRepo.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        JSONObject userInfo = new JSONObject();
+        userInfo.put("email", user.getEmail());
+        userInfo.put("firstName", user.getFirstName());
+        userInfo.put("lastName", user.getLastName());
+        userInfo.put("EGN", user.getEGN());
+        userInfo.put("role", user.getRole());
+        userInfo.put("address", user.getAddress());
+        JSONObject resp = new JSONObject();
+        resp.put("message", "Created");
+        resp.put("user", userInfo);
+        return new ResponseEntity<String>(resp.toString(), HttpStatus.CREATED);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PostMapping("/login")
@@ -74,6 +86,7 @@ public class UsersController {
         userInfo.put("lastName", user.getLastName());
         userInfo.put("EGN", user.getEGN());
         userInfo.put("role", user.getRole());
+        userInfo.put("roles", user.getRoles());
         JSONObject resp = new JSONObject();
         resp.put("message", "logged in");
         resp.put("user", userInfo);
@@ -98,8 +111,8 @@ public class UsersController {
     public ResponseEntity<User> getUserInfo(@AuthenticationPrincipal UserDetails userDetails){
         User user = userRepo.findByEmail(userDetails.getUsername());
         if (userDetails != null) {
-            UserRoleAssociation userRoleAssociation = user.getUserRoleAssociation().iterator().next();
-            String name = userRoleAssociation.getUserRoleAssociationKey().getRole().getName();
+            RoleEntity role = user.getRoles().iterator().next();
+            String name = role.getName();
             return ResponseEntity.status(HttpStatus.OK).body(user);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

@@ -1,5 +1,7 @@
 package com.example.onlinegradebook.model;
 
+import com.example.onlinegradebook.constant.RoleType;
+
 public class UserPost {
 
     private String email;
@@ -11,6 +13,10 @@ public class UserPost {
     private String lastName;
 
     private String egn;
+
+    private String address;
+
+    private RoleType role;
 
     public UserPost() {
     }
@@ -34,4 +40,22 @@ public class UserPost {
     }
 
     public String getEgn() { return egn; }
+
+    public RoleType getRole() {
+        return role;
+    }
+
+    public void setRole(RoleType role) {
+        this.role = role;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
 }
