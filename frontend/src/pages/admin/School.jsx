@@ -195,7 +195,7 @@ const School = () => {
               }}
             />
           </FormControl>
-          Subjects:
+          Classes:
           <Grid
             container
             spacing={2}
