@@ -46,11 +46,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   flex: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  }
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
 }));
 
 export default function Topbar() {
@@ -120,7 +120,9 @@ export default function Topbar() {
           <div className={classes.grow} />
           {currentUser && (
             <div className={classes.flex}>
-              <div>Name: {currentUser.name}</div>
+              <div>
+                Name: {currentUser.firstName} {currentUser.lastName}
+              </div>
               <div>Role: {currentUser.role}</div>
             </div>
           )}

@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
+import axios from "axios";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import { setCurrentUser } from "../../redux/user/actions";
 
-const USERS = [
-  {
-    name: "Natali Arabadzhiyska",
-    email: "admin@admin.com",
-    password: "admin",
-    role: "Admin",
-    id: 2,
-  },
-  {
-    name: "Pencho Ivanov",
-    email: "student@student.com",
-    password: "student",
-    role: "Student",
-    id: 1,
-  },
-];
+// const USERS = [
+//   {
+//     name: "Natali Arabadzhiyska",
+//     email: "admin@admin.com",
+//     password: "admin",
+//     role: "Admin",
+//     id: 2,
+//   },
+//   {
+//     name: "Pencho Ivanov",
+//     email: "student@student.com",
+//     password: "student",
+//     role: "Student",
+//     id: 1,
+//   },
+// ];
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -35,45 +35,45 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const signIn = () => {
-    // axios
-    //   .post(`/login`, {
-    //     email,
-    //     password,
-    //   })
-    //   .then((res) => {
-    //     if (res.data.message === "logged in") {
-    //       dispatch(setCurrentUser(res.data.user));
-    //       setError(false);
-    //       navigate("/");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     setError(true);
-    //     console.log(error);
-    //   });
-    const foundUser = findUser(email, password);
-    if (foundUser) {
-      dispatch(
-        setCurrentUser({
-          name: foundUser.name,
-          email: foundUser.email,
-          role: foundUser.role,
-          id: foundUser.id,
-        })
-      );
-      setError(false);
-      navigate("/");
-    } else {
-      setError(true);
-    }
+    axios
+      .post(`/api/users/login`, {
+        email,
+        password,
+      })
+      .then((res) => {
+        if (res.data.message === "logged in") {
+          dispatch(setCurrentUser(res.data.user));
+          setError(false);
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        setError(true);
+        console.log(error);
+      });
+    // const foundUser = findUser(email, password);
+    // if (foundUser) {
+    //   dispatch(
+    //     setCurrentUser({
+    //       name: foundUser.name,
+    //       email: foundUser.email,
+    //       role: foundUser.role,
+    //       id: foundUser.id,
+    //     })
+    //   );
+    //   setError(false);
+    //   navigate("/");
+    // } else {
+    //   setError(true);
+    // }
   };
 
-  const findUser = (email, password) => {
-    const foundUser = USERS.find(
-      (el) => el.email === email && el.password === password
-    );
-    return foundUser;
-  };
+  // const findUser = (email, password) => {
+  //   const foundUser = USERS.find(
+  //     (el) => el.email === email && el.password === password
+  //   );
+  //   return foundUser;
+  // };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

@@ -21,8 +21,12 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "userRoleAssociationKey.user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserRoleAssociation> userRoleAssociation;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
+
+//    @OneToMany(mappedBy = "userRoleAssociationKey.user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<UserRoleAssociation> userRoleAssociation;
 
     @Column(length = 10)
     String egn;
@@ -71,6 +75,25 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.egn = egn;
+    }
+
+    public User(String email, String password, String firstName, String lastName, String egn, RoleType role) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.egn = egn;
+        this.role = role;
+    }
+
+    public User(String email, String password, String firstName, String lastName, String egn, String address, RoleType role) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.egn = egn;
+        this.address = address;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -129,6 +152,14 @@ public class User {
         this.role = role;
     }
 
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
     public int getId() {
         return id;
     }
@@ -161,7 +192,4 @@ public class User {
         this.password = password;
     }
 
-    public Set<UserRoleAssociation> getUserRoleAssociation() {
-        return userRoleAssociation;
-    }
 }

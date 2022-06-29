@@ -25,19 +25,6 @@ const Main = (props) => {
   const { children } = props;
 
   const classes = useStyles();
-  // const isDesktop = true;
-
-  // const [openSidebar, setOpenSidebar] = useState(false);
-
-  // const handleSidebarOpen = () => {
-  //   setOpenSidebar(true);
-  // };
-
-  // const handleSidebarClose = () => {
-  //   setOpenSidebar(false);
-  // };
-
-  // const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
   return (
     <>
@@ -49,7 +36,7 @@ const Main = (props) => {
         })}
       >
         <Topbar />
-        <Sidebar variant={"persistent" } />
+        <Sidebar variant={"persistent"} />
         <main className={classes.content}>
           <Box>
             <Paper>{children}</Paper>
