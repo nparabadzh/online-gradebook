@@ -68,43 +68,43 @@ public class DataInitializerService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Creating Users
-//        userRepository.save(new User("Stefan Stefanov", "6805120979", "Place A", RoleType.DIRECTOR,
-//                null, null, null));
-//        userRepository.save(new User("Pavel Dimitrov", "7508069415", "Place B", RoleType.TEACHER,
-//                null, null, null));
-//        userRepository.save(new User("Adriana Mileva", "8912243645", "Place D", RoleType.TEACHER,
-//                null, null, null));
-//        userRepository.save(new User("Kristian Pavlov", "6805120979", "Place E", RoleType.DIRECTOR,
-//                null, null, null));
-//        userRepository.save(new User("Maria Petrova", "8912243645", "Place G", RoleType.TEACHER,
-//                null, null, null));
-//        userRepository.save(new User("Elisaveta Gospodinova", "7508069415", "Place F", RoleType.TEACHER,
-//                null, null, null));
-//        userRepository.save(new User("Ivanka Rumenova", "1009162545", "Place C", RoleType.STUDENT,
-//                null, null, null));
-//        userRepository.save(new User("Plamen Rumenov", "0806015696", "Place C", RoleType.STUDENT,
-//                null, null, null));
-//        userRepository.save(new User("Nikol Tosheva", "1009162545", "Place H", RoleType.STUDENT,
-//                null, null, null));
-//        userRepository.save(new User("Elena Bukova", "0806015696", "Place H", RoleType.STUDENT,
-//                null, null, null));
-//        userRepository.save(new User("Petar Rumenov", "7506040506", "Place C", RoleType.PARENT,
-//                null, null, null));
-//        userRepository.save(new User("Violeta Bobeva", "7506040506", "Place H", RoleType.PARENT,
-//                null, null, null));
+//        userRepository.save(new User("stefan_stefanov@mail.com", "password","Stefan",
+//                "Stefanov", "6805120979", "Place A", RoleType.DIRECTOR));
+//        userRepository.save(new User("pavel_dimitrov@mail.com", "password", "Pavel",
+//                "Dimitrov", "7508069415", "Place B", RoleType.TEACHER));
+//        userRepository.save(new User("adriana_mileva@mail.com", "password", "Adriana",
+//                "Mileva", "8912243645", "Place D", RoleType.TEACHER));
+//        userRepository.save(new User("kristian_pavlov@mail.com", "password", "Kristian",
+//                "Pavlov", "6805120979", "Place E", RoleType.DIRECTOR));
+//        userRepository.save(new User("maria_petrova@mail.com", "password", "Maria",
+//                "Petrova", "8912243645", "Place G", RoleType.TEACHER));
+//        userRepository.save(new User("elisaveta_gospodinova@mail.com", "password", "Elisaveta",
+//                "Gospodinova", "7508069415", "Place F", RoleType.TEACHER));
+//        userRepository.save(new User("ivanka_rumenova@mail.com", "password", "Ivanka",
+//                "Rumenova", "1009162545", "Place C", RoleType.STUDENT));
+//        userRepository.save(new User("plamen_rumenov@mail.com", "password", "Plamen",
+//                "Rumenov", "0806015696", "Place C", RoleType.STUDENT));
+//        userRepository.save(new User("nikol_tosheva@mail.com", "password", "Nikol",
+//                "Tosheva", "1009162545", "Place H", RoleType.STUDENT));
+//        userRepository.save(new User("elena_bukova.com", "password", "Elena",
+//                "Bukova", "0806015696", "Place H", RoleType.STUDENT));
+//        userRepository.save(new User("petar_rumenov@mail.com", "password", "Petar",
+//                "Rumenov", "7506040506", "Place C", RoleType.PARENT));
+//        userRepository.save(new User("violeta_bobeva.com", "password", "Violeta",
+//                "Bobeva", "7506040506", "Place H", RoleType.PARENT));
 //
 //        //Creating Schools
 //        schoolRepository.save(new School("Petko Slaveikov", "Mladost str., Varna", null));
 //        schoolRepository.save(new  School("Peio Yavorov", "Svoboda str., Sofia", null));
 
 //        //Creating Classes
-//        schoolClassRepository.save(new SchoolClass(Year.fifth, ClassInitialization.A, schoolRepository.getById(1),
+//        schoolClassRepository.save(new SchoolClass(Year.fifth, ClassInitialization.A,
 //                null, null));
-//        schoolClassRepository.save(new SchoolClass(Year.seventh, ClassInitialization.A, schoolRepository.getById(1),
+//        schoolClassRepository.save(new SchoolClass(Year.seventh, ClassInitialization.A,
 //                null, null));
-//        schoolClassRepository.save(new SchoolClass(Year.fifth, ClassInitialization.A, schoolRepository.getById(2),
+//        schoolClassRepository.save(new SchoolClass(Year.fifth, ClassInitialization.A,
 //                null, null));
-//        schoolClassRepository.save(new SchoolClass(Year.seventh, ClassInitialization.A, schoolRepository.getById(2),
+//        schoolClassRepository.save(new SchoolClass(Year.seventh, ClassInitialization.A,
 //                null, null));
 //
 //        //Creating Employees
@@ -115,11 +115,11 @@ public class DataInitializerService implements CommandLineRunner {
 //        employeeRepository.save(new Employee(userRepository.getById(3), "Sports", 1400,
 //                schoolRepository.getById(1)));
 //        employeeRepository.save(new Employee(userRepository.getById(4), "Philosophy", 2200,
-//                schoolRepository.getById(4)));
+//                schoolRepository.getById(2)));
 //        employeeRepository.save(new Employee(userRepository.getById(5), "English", 1700,
-//                schoolRepository.getById(4)));
+//                schoolRepository.getById(2)));
 //        employeeRepository.save(new Employee(userRepository.getById(6), "Business", 1600,
-//                schoolRepository.getById(4)));
+//                schoolRepository.getById(2)));
 //
 //        //Generating Students
 //        studentRepository.save(new Student(userRepository.getById(7), schoolClassRepository.getById(1)));
@@ -167,7 +167,7 @@ public class DataInitializerService implements CommandLineRunner {
 //        mathTopics.add(topicRepository.getById(2));
 //        mathTopics.add(topicRepository.getById(3));
 //        mathTopics.add(topicRepository.getById(4));
-//        subjectRepository.save(new Subject(employeeRepository.getById(1), mathTopics, Year.fifth));
+//        subjectRepository.save(new Subject("math", employeeRepository.getById(1), mathTopics, schoolClassRepository.getById(1)));
 //
 //        List<Topic> historyTopics = new ArrayList<>();
 //        historyTopics.add(topicRepository.getById(5));
@@ -175,35 +175,35 @@ public class DataInitializerService implements CommandLineRunner {
 //        historyTopics.add(topicRepository.getById(7));
 //        historyTopics.add(topicRepository.getById(8));
 //        historyTopics.add(topicRepository.getById(9));
-//        subjectRepository.save(new Subject(employeeRepository.getById(2), historyTopics, Year.fifth));
+//        subjectRepository.save(new Subject("history", employeeRepository.getById(2), historyTopics, schoolClassRepository.getById(1)));
 //
 //        List<Topic> sportsTopics = new ArrayList<>();
 //        sportsTopics.add(topicRepository.getById(10));
 //        sportsTopics.add(topicRepository.getById(11));
 //        sportsTopics.add(topicRepository.getById(12));
-//        subjectRepository.save(new Subject(employeeRepository.getById(3), sportsTopics, Year.seventh));
+//        subjectRepository.save(new Subject("sport", employeeRepository.getById(3), sportsTopics, schoolClassRepository.getById(2)));
 //
 //        List<Topic> philosophyTopics = new ArrayList<>();
 //        philosophyTopics.add(topicRepository.getById(13));
 //        philosophyTopics.add(topicRepository.getById(14));
 //        philosophyTopics.add(topicRepository.getById(15));
 //        philosophyTopics.add(topicRepository.getById(16));
-//        subjectRepository.save(new Subject(employeeRepository.getById(4), philosophyTopics, Year.fifth));
+//        subjectRepository.save(new Subject("philosophy", employeeRepository.getById(4), philosophyTopics, schoolClassRepository.getById(1)));
 //
 //        List<Topic> englishTopics = new ArrayList<>();
 //        englishTopics.add(topicRepository.getById(17));
 //        englishTopics.add(topicRepository.getById(18));
 //        englishTopics.add(topicRepository.getById(19));
 //        englishTopics.add(topicRepository.getById(20));
-//        subjectRepository.save(new Subject(employeeRepository.getById(5), englishTopics, Year.seventh));
+//        subjectRepository.save(new Subject("english", employeeRepository.getById(5), englishTopics, schoolClassRepository.getById(2)));
 //
 //        List<Topic> businessTopics = new ArrayList<>();
 //        businessTopics.add(topicRepository.getById(21));
 //        businessTopics.add(topicRepository.getById(22));
-//        subjectRepository.save(new Subject(employeeRepository.getById(6), businessTopics, Year.seventh));
+//        subjectRepository.save(new Subject("business", employeeRepository.getById(6), businessTopics, schoolClassRepository.getById(2)));
 //
 //        //Creating Grades
-//        gradesRepository.save(new Grades(6, Date.valueOf("2022-06-21"), studentRepository.getById(2),subjectRepository.getById(1)));
+//        gradesRepository.save(new Grades(6, studentRepository.getById(2),subjectRepository.getById(1)));
 //
 //        //Creating SchoolSchedule
 //        schoolScheduleRepository.save(new SchoolSchedule(WeekDay.MONDAY, subjectRepository.getById(1),

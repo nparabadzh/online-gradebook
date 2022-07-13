@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import "./App.css";
 
 import Main from "./layout/Main";
-import Home from "./pages/home/index";
-import SignIn from "./pages/authentication/SignIn";
-import SignUp from "./pages/authentication/SignUp";
+import Home from "./pages/Home/index";
+import SignIn from "./pages/Authentication/SignIn";
+import SignUp from "./pages/Authentication/SignUp";
 import Student from "./pages/student/index";
 import Admin from "./pages/admin/index";
 import UnderConstruction from "./pages/UnderConstrction";

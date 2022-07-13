@@ -52,6 +52,8 @@ public class User {
     public User() {
     }
 
+
+
     public User(String EGN, String address, RoleType role, Employee employee, Student student, Parent parent) {
         this.egn = EGN;
         this.address = address;
