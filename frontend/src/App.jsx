@@ -9,6 +9,7 @@ import SignUp from "./pages/authentication/SignUp";
 import Student from "./pages/student/index";
 import Admin from "./pages/admin/index";
 import UnderConstruction from "./pages/UnderConstrction";
+import Class from "./pages/class";
 
 function App() {
   // const currentUser = useSelector((state) => state.user.currentUser);
@@ -23,7 +24,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/student" element={<Student />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/classes" element={<UnderConstruction />} />
+          <Route path="/classes/:classId" element={<Class />} />
           <Route path="/users" element={<UnderConstruction />} />
           <Route path="/profile" element={<UnderConstruction />} />
           <Route path="/schools" element={<UnderConstruction />} />

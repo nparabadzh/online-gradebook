@@ -1,7 +1,11 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
+import clsx from 'clsx';
 import { NavLink as RouterLink, useLocation } from "react-router-dom";
 import { makeStyles } from "@material-ui/styles";
 import { List, ListItem, Button, colors } from "@material-ui/core";
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -35,7 +39,7 @@ const useStyles = makeStyles(() => ({
   },
   subItemText: {
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   icon: {
     color: "#0000FF",
@@ -86,7 +90,16 @@ const SidebarNav = (props) => {
   const { pages, className, currentUserRole, ...rest } = props;
   const classes = useStyles();
   const location = useLocation();
-  // const currentBaseUrl = location.pathname.split("/")[1];
+  const currentBaseUrl = location.pathname.split("/")[1];
+
+  const [expanded, setExpanded] = useState(() => {
+    const result = {};
+    const pagesWithSubPages = pages.filter((pg) => pg.subPages.length);
+    pagesWithSubPages.forEach((pg) => {
+      result[`${pg.title}`] = currentBaseUrl === pg.baseUrl;
+    });
+    return result;
+  });
 
   const handleClick = (id) => {
     setExpanded({
@@ -119,8 +132,8 @@ const SidebarNav = (props) => {
         id={page.title}
       >
         <Button
-          // activeClassName={classes.active}
-          // isActive={() => isActive(page.href, page.activeUrlList)}
+          activeClassName={classes.active}
+          isActive={() => isActive(page.href, page.activeUrlList)}
           className={classes.button}
           component={CustomRouterLink}
           to={page.href ? page.href : ""}
@@ -132,17 +145,78 @@ const SidebarNav = (props) => {
     );
   };
 
+  const renderMenu = (page) => {
+    if (page.subPages.length) {
+      return (
+        <div key={`parent-${page.title}-${page.href}`}>
+          <ListItem
+            className={classes.item}
+            disableGutters
+            key={`${page.title}-${page.href}`}
+            id={`${page.title}-${page.href}`}
+            onClick={() => handleClick(page.title)}
+          >
+            <Button
+              className={clsx(
+                classes.subButton,
+                page.baseUrl === currentBaseUrl && classes.selected,
+              )}
+              classes={{ label: classes.expandButton }}
+            >
+              <div className={classes.subItemText}>
+                <div
+                  className={clsx(classes.subIcon, {
+                    [classes.selected]: page.baseUrl === currentBaseUrl,
+                  })}
+                >
+                  {page.icon}
+                </div>
+                <span>{page.title}</span>
+              </div>
+
+              {expanded[page.title] ? <ExpandLess /> : <ExpandMore />}
+            </Button>
+          </ListItem>
+          <Collapse in={expanded[page.title]} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {page.subPages.map((subPage, index) => (
+                <ListItem
+                  className={classes.item}
+                  disableGutters
+                  id={`${page.title}-${subPage.title}-${index}`}
+                  key={`${page.title}-${subPage.title}-${index}`}
+                >
+                  <Button
+                    activeClassName={classes.active}
+                    isActive={() =>
+                      isActive(subPage.href, subPage.activeUrlList)
+                    }
+                    className={classes.button}
+                    component={CustomRouterLink}
+                    to={subPage.href ? subPage.href : '/'}
+                  >
+                    <span className={classes.nested}>{subPage.title}</span>
+                  </Button>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </div>
+      );
+    }
+  };
+
   return (
     <List {...rest} className={className}>
       {pages.map((page) => {
         if (page.requiredRole) {
           if (page.requiredRole.includes(currentUserRole)) {
-            return renderPage(page);
+            return page.subPages.length ? renderMenu(page) : renderPage(page);
           } else {
             return null;
           }
         } else {
-          return renderPage(page);
+          return page.subPages.length ? renderMenu(page) : renderPage(page);
         }
       })}
     </List>
